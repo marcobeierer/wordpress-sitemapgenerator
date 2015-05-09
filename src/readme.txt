@@ -6,7 +6,6 @@ Tested up to: 4.2.2
 Stable tag: 1.0.0-beta.1
 License: AGPL v3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
-Plugin URI: https://www.marcobeierer.com/tools/sitemap-generator#wordpress
 
 An easy to use sitemap generator for WordPress.
 
