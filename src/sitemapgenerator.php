@@ -1,7 +1,10 @@
 <?php
-/**
- * @package SitemapGenerator
+/*
+ * @package    SitemapGenerator
+ * @copyright  Copyright (C) 2015 Marco Beierer. All rights reserved.
+ * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL
  */
+
 /*
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/tools/sitemap-generator#wordpress
@@ -12,34 +15,6 @@ Author URI: https://www.marcobeierer.com
 License: AGPL
 Text Domain: Marco Beierer
 */
-
-/*
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
-
-/*add_action('wp_ajax_generate_sitemap', 'generate_sitemap');
-function generate_sitemap() {
-	$response = array(
-		'what'=>'foobar',
-		'action'=>'generate_sitemap',
-		'id'=>'1', // new WP_Error('oops','I had an accident.'),
-		'data'=>'<p><strong>Hello world!</strong></p>'
-	);
-	$xmlResponse = new WP_Ajax_Response($response);
-	$xmlResponse->send();
-}*/
 
 add_action('admin_menu', 'register_sitemap_generator_page');
 

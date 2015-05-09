@@ -6,16 +6,17 @@ Tested up to: 4.2.2
 Stable tag: 1.0.0-beta.1
 License: AGPL v3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
+Plugin URI: https://www.marcobeierer.com/tools/sitemap-generator#wordpress
 
 An easy to use sitemap generator for WordPress.
 
 == Description ==
-The sitemap generator uses an external service to crawl your website and create a sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages once.
+The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wordpress) uses an external service to crawl your website and create a sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages once.
 
 = Features =
-- Simple setup.
-- Works out of the box with all WordPress plugins.
-- Low computations costs for your webserver.
+* Simple setup.
+* Works out of the box with all WordPress plugins.
+* Low computations costs for your webserver.
 
 = Is the service free of charge? =
 Currently yes, but just during the beta phase. Afterwards the service costs about 1 Euro per 500 pages per month. The wordpress plugin itself is free of charge, but nearly useless without the external service.
