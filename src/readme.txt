@@ -21,7 +21,7 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 Currently yes, but just during the beta phase. Afterwards the service costs about 1 Euro per 500 pages per month. The wordpress plugin itself is free of charge, but nearly useless without the external service.
 
 = Limitations =
-By default the sitemap generator indexes the first 500 pages of your website. If you create a file called *allow-sitemap-generator.html* in your Joomla root directory, the sitemap generator indexes up to 2500 pages. Please contact me if your website is larger. The limitations only apply during the beta phase.
+By default the sitemap generator indexes the first 500 pages of your website. If you create a file called *allow-sitemap-generator.html* in your WordPress root directory, the sitemap generator indexes up to 2500 pages. Please contact me if your website is larger. The limitations only apply during the beta phase.
 
 = Warnings =
 If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the sitemap generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
