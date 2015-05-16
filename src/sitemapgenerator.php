@@ -18,12 +18,14 @@ Text Domain: Marco Beierer
 
 add_action('admin_menu', 'register_sitemap_generator_page');
 function register_sitemap_generator_page() {
-	add_menu_page('Generate Sitemap', 'Generate Sitemap', 'manage_options', 'sitemap-generator', 'sitemap_generator_page', '', 99); 
+	add_menu_page('Sitemap Generator', 'Sitemap Generator', 'manage_options', 'sitemap-generator', 'sitemap_generator_page', '', 99); 
 }
 
 function sitemap_generator_page() {
 ?>
-	<div id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
+	<h2>Sitemap Generator</h2>
+	<div class="card" id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
+		<h3>Generate a sitemap of your site</h3>
         <div ng-controller="SitemapController">
             <form name="sitemapForm">
                 <div class="input-group">
@@ -31,12 +33,12 @@ function sitemap_generator_page() {
                         <i class="glyphicon glyphicon-globe"></i>
                     </span>
                     <span class="input-group-btn">
-                        <button type="submit" class="btn {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate sitemap</button>
-                        <a class="btn {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show sitemap</a>
+                        <button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate sitemap</button>
+                        <a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show sitemap</a>
                     </span>
                 </div>
             </form>
-            <div class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></div>
+            <p class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
         </div>
     </div>
 	<script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/angular.min.js"></script>
@@ -73,7 +75,7 @@ function sitemap_proxy_callback() {
 
 			$rootPath = get_home_path();
 			if ($rootPath != '') {
-				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $response); // TODO handle error
+				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $response); // TODO handle and report error
 			}
 		}
 	}

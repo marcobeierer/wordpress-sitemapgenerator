@@ -23,8 +23,8 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 		}
 
 		$scope.messageClass = "alert-info";
-		$scope.generateClass = "btn-primary";
-		$scope.downloadClass = "btn-default";
+		$scope.generateClass = "button-primary";
+		$scope.downloadClass = "buttton-default";
 
 		$scope.generate = function() {
 
@@ -40,8 +40,8 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 					$scope.message = "The sitemap is being generated. Please wait a moment.";
 				}
 				$scope.messageClass = "alert-warning";
-				$scope.generateClass = "btn-primary";
-				$scope.downloadClass = "btn-default";
+				$scope.generateClass = "button-primary";
+				$scope.downloadClass = "button-default";
 				
 				var poller = function() {
 
@@ -63,8 +63,8 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 								}
 
 								$scope.messageClass = "alert-success";
-								$scope.generateClass = "btn-default";
-								$scope.downloadClass = "btn-primary";
+								$scope.generateClass = "button-default";
+								$scope.downloadClass = "button-primary";
 							}
 							else {
 								$scope.pageCount = data.page_count;
