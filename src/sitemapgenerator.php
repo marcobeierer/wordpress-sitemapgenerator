@@ -25,7 +25,7 @@ function sitemap_generator_page() {
 ?>
 	<h2>Sitemap Generator</h2>
 	<div class="card" id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
-		<h3>Generate a sitemap of your site</h3>
+		<h3>Generate a XML sitemap of your site</h3>
         <div ng-controller="SitemapController">
             <form name="sitemapForm">
                 <div class="input-group">
@@ -33,8 +33,8 @@ function sitemap_generator_page() {
                         <i class="glyphicon glyphicon-globe"></i>
                     </span>
                     <span class="input-group-btn">
-                        <button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate sitemap</button>
-                        <a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show sitemap</a>
+                        <button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate your sitemap</button>
+                        <a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show the sitemap</a>
                     </span>
                 </div>
             </form>
