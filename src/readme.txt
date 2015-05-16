@@ -1,6 +1,6 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, site map
+Tags: sitemap, site map, sitemap.xml, xml sitemap, seo, google, yahoo, bing, baidu, yandex
 Requires at least: 4.2
 Tested up to: 4.2.2
 Stable tag: 1.0.0-beta.2
@@ -16,6 +16,13 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 * Simple setup.
 * Works out of the box with all WordPress plugins.
 * Low computations costs for your webserver.
+
+= Technical Features =
+* Respects your robots.txt file (also the crawl-delay directive)
+* Adds PDF files to the sitemap
+
+= Upcoming Technical Features =
+* Support for noindex meta elements
 
 = Is the service free of charge? =
 Currently yes, but just during the beta phase. Afterwards the service costs about 1 Euro per 500 pages per month. The wordpress plugin itself is free of charge, but nearly useless without the external service.
