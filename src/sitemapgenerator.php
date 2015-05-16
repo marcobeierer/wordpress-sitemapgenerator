@@ -17,12 +17,82 @@ Text Domain: Marco Beierer
 */
 
 add_action('admin_menu', 'register_sitemap_generator_page');
-
-function register_sitemap_generator_page(){
-	add_menu_page( 'Generate Sitemap', 'Generate Sitemap', 'manage_options', 'sitemap-generator', 'sitemap_generator_page', '', 99); 
+function register_sitemap_generator_page() {
+	add_menu_page('Generate Sitemap', 'Generate Sitemap', 'manage_options', 'sitemap-generator', 'sitemap_generator_page', '', 99); 
 }
 
-function sitemap_generator_page(){
+function sitemap_generator_page() {
+?>
+	<div id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
+        <div ng-controller="SitemapController">
+            <form name="sitemapForm">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-globe"></i>
+                    </span>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate sitemap</button>
+                        <a class="btn {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show sitemap</a>
+                    </span>
+                </div>
+            </form>
+            <div class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></div>
+        </div>
+    </div>
+	<script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/angular.min.js"></script>
+    <script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/sitemap.js?v=1"></script>
+<?
+}
+
+add_action('wp_ajax_sitemap_proxy', 'sitemap_proxy_callback');
+function sitemap_proxy_callback() {
+
+	$baseurl = get_site_url();
+	$baseurl64 = strtr(base64_encode($baseurl), '+/', '-_');
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress');
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	$response = curl_exec($ch);
+
+	$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+	curl_close($ch);
+
+	if ($statusCode == 200 && $contentType == 'application/xml') {
+
+		$reader = new XMLReader();
+		$reader->xml($response, 'UTF-8');
+		$reader->setParserProperty(XMLReader::VALIDATE, true);
+
+		if ($reader->isValid()) { // TODO check if empty?
+
+			$rootPath = get_home_path();
+			if ($rootPath != '') {
+				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $response); // TODO handle error
+			}
+		}
+	}
+
+	if (function_exists('http_response_code')) {
+		http_response_code($statusCode);
+	}
+	else { // fix for PHP version older than 5.4.0
+		$protocol = (isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0');
+		header($protocol . ' ' . $statusCode . ' ');
+	}
+
+	header("Content-Type: $contentType");
+
+	echo $response;
+	wp_die();
+}
+
+/*function sitemap_generator_page(){
 
 	$PLG_AJAX_SITEMAPGENERATOR_SUCCESS="The generation of the sitemap was successfull. The sitemap was saved as sitemap.xml in the WordPress root folder.";
 	$PLG_AJAX_SITEMAPGENERATOR_ERROR="An error occurred. Please try it again or contact the developer of the extension.";
@@ -75,4 +145,5 @@ function sitemap_generator_page(){
 
 	echo $PLG_AJAX_SITEMAPGENERATOR_ERROR; // TODO better error message
 	return;
-}
+}*/
+
