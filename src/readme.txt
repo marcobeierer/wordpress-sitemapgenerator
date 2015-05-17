@@ -15,7 +15,7 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 = Features =
 * Simple setup.
 * Works out of the box with all WordPress plugins.
-* Low computations costs for your webserver.
+* Low computation costs for your webserver.
 
 = Technical Features =
 * Respects your robots.txt file (also the crawl-delay directive)
@@ -33,11 +33,18 @@ By default the sitemap generator indexes the first 500 pages of your website. If
 = Warnings =
 If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the sitemap generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
 
+= Pre-Installation Verification Test =
+If you like to test if the sitemap generator works fine with your website before you will install the plugin, you could use the [online sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#generator) on my website, which uses to same technology as the plugin to generate the sitemaps.  
+
 == Installation ==
 1. Upload the 'mb-sitemap-generator' folder to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Access the generator with the "Sitemap Generator" button in the sidebar and use the "Generate your sitemap" button to start the generation process. The sitemap will be saved as sitemap.xml in your WordPress root directory. **Be aware that an existing sitemap.xml file would be overwritten without asking.**
 4. Use the "Show the sitemap" button to download your sitemap and check if the generated sitemap is complete.
+
+== Screenshots ==
+
+1. The user interface of the sitemap generator.
 
 == Changelog ==
 
