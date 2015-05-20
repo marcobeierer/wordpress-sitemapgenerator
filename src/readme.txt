@@ -23,6 +23,7 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 
 = Upcoming Technical Features =
 * Support for noindex meta elements
+* Generation of image sitemaps
 
 = Is the service free of charge? =
 Currently yes, but just during the beta phase. Afterwards the service costs about 1 Euro per 500 pages per month. The wordpress plugin itself is free of charge, but nearly useless without the external service.
