@@ -23,26 +23,28 @@ function register_sitemap_generator_page() {
 
 function sitemap_generator_page() {
 ?>
-	<h2>Sitemap Generator</h2>
-	<div class="card" id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
-		<h3>Generate a XML sitemap of your site</h3>
-        <div ng-controller="SitemapController">
-            <form name="sitemapForm">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-globe"></i>
-                    </span>
-                    <span class="input-group-btn">
-                        <button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate your sitemap</button>
-                        <a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show the sitemap</a>
-                    </span>
-                </div>
-            </form>
-            <p class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
-        </div>
-    </div>
-	<script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/angular.min.js"></script>
-    <script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/sitemap.js?v=1"></script>
+	<div class="wrap">
+		<h2>Sitemap Generator</h2>
+		<div class="card" id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
+			<h3>Generate a XML sitemap of your site</h3>
+			<div ng-controller="SitemapController">
+				<form name="sitemapForm">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-globe"></i>
+						</span>
+						<span class="input-group-btn">
+							<button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate your sitemap</button>
+							<a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show the sitemap</a>
+						</span>
+					</div>
+				</form>
+				<p class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
+			</div>
+		</div>
+		<script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/angular.min.js"></script>
+		<script defer src="<?php echo get_site_url(); ?>/wp-content/plugins/mb-sitemap-generator/js/sitemap.js?v=1"></script>
+	</div>
 <?
 }
 
@@ -149,3 +151,31 @@ function sitemap_proxy_callback() {
 	return;
 }*/
 
+add_action('admin_menu', 'register_sitemap_generator_settings_page');
+function register_sitemap_generator_settings_page() {
+	add_submenu_page('sitemap-generator', 'Sitemap Generator Settings', 'Settings', 'manage_options', 'sitemap-generator-settings', 'sitemap_generator_settings_page');
+	add_action('admin_init', 'register_sitemap_generator_settings');
+}
+
+function register_sitemap_generator_settings() {
+	register_setting('sitemap-generator-settings-group', 'token');
+}
+
+function sitemap_generator_settings_page() {
+?>
+	<div class="wrap">
+		<h2>Sitemap Generator Settings</h2>
+		<div class="card">
+			<form method="post" action="options.php">
+				<?php settings_fields('sitemap-generator-settings-group'); ?>
+				<?php do_settings_sections('sitemap-generator-settings-group'); ?>
+				<h3>Your Token</h3>
+				<p><textarea name="token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('token')); ?></textarea></p>
+				<p>You can buy a token at the following website:<br />
+				<a href="https://www.marcobeierer.com/tools/sitemap-generator-token">https://www.marcobeierer.com/tools/sitemap-generator-token</a></p>
+				<?php submit_button(); ?>
+			</form>
+		</div>
+	</div>
+<?
+}
