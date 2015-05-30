@@ -60,6 +60,11 @@ function sitemap_proxy_callback() {
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+	$token = get_option('sitemap-generator-token');
+	if ($token != '') {
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: BEARER ' . $token));
+	}
+
 	$response = curl_exec($ch);
 
 	$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -103,7 +108,7 @@ function register_sitemap_generator_settings_page() {
 }
 
 function register_sitemap_generator_settings() {
-	register_setting('sitemap-generator-settings-group', 'token');
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-token');
 }
 
 function sitemap_generator_settings_page() {
@@ -115,7 +120,7 @@ function sitemap_generator_settings_page() {
 				<?php settings_fields('sitemap-generator-settings-group'); ?>
 				<?php do_settings_sections('sitemap-generator-settings-group'); ?>
 				<h3>Your Token</h3>
-				<p><textarea name="token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('token')); ?></textarea></p>
+				<p><textarea name="sitemap-generator-token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('sitemap-generator-token')); ?></textarea></p>
 				<p>You can buy a token at the following website:<br />
 				<a href="https://www.marcobeierer.com/tools/sitemap-generator-token">https://www.marcobeierer.com/tools/sitemap-generator-token</a></p>
 				<?php submit_button(); ?>
