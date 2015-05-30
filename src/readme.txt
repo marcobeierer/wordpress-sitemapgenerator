@@ -3,7 +3,7 @@ Contributors: mbsec
 Tags: sitemap, site map, sitemap.xml, xml sitemap, seo, google, yahoo, bing, baidu, yandex
 Requires at least: 4.2
 Tested up to: 4.2.2
-Stable tag: 1.0.0-beta.2
+Stable tag: 1.0.0-beta.3
 License: AGPL v3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
@@ -26,10 +26,12 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 * Generation of image sitemaps
 
 = Is the service free of charge? =
-Currently yes, but just during the beta phase. Afterwards the service costs about 1 Euro per 500 pages per month. The wordpress plugin itself is free of charge, but nearly useless without the external service.
+The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages, you could by a token to create a sitemap with up to 15000 pages at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service.
+
+[https://www.marcobeierer.com/tools/sitemap-generator-token](https://www.marcobeierer.com/tools/sitemap-generator-token)
 
 = Limitations =
-By default the sitemap generator indexes the first 500 pages of your website. If you create a file called *allow-sitemap-generator.html* in your WordPress root directory, the sitemap generator indexes up to 2500 pages. Please contact me if your website is larger. The limitations only apply during the beta phase.
+By default the sitemap generator indexes the first 500 pages of your website. If your website has more pages, please see the section 'Is the service free of charge?'.
 
 = Warnings =
 If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the sitemap generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
@@ -58,3 +60,8 @@ If you like to test if the sitemap generator works fine with your website before
 *Release Date - 16th May, 2015*
 
 * Improved the user interface.
+
+= 1.0.0-beta.3 =
+*Release Date - 30th May, 2015*
+
+* Implemented support for authorization tokens.
