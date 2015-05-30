@@ -26,7 +26,7 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 * Generation of image sitemaps
 
 = Is the service free of charge? =
-The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages, you could by a token to create a sitemap with up to 15000 pages at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service.
+The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages, you could buy a token to create a sitemap with up to 15000 pages at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service.
 
 [https://www.marcobeierer.com/tools/sitemap-generator-token](https://www.marcobeierer.com/tools/sitemap-generator-token)
 
