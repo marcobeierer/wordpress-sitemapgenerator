@@ -1,16 +1,16 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, site map, sitemap.xml, xml sitemap, seo, google, yahoo, bing, baidu, yandex
+Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, seo, google, yahoo, bing, baidu, yandex
 Requires at least: 4.2
-Tested up to: 4.2.2
-Stable tag: 1.0.0-beta.3
+Tested up to: 4.2.3
+Stable tag: 1.0.0-beta.4
 License: AGPL v3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
 An easy to use XML sitemap generator for WordPress.
 
 == Description ==
-The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wordpress) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages once.
+The [sitemap generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages once.
 
 = Features =
 * Simple setup.
@@ -20,13 +20,14 @@ The [sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#wor
 = Technical Features =
 * Respects your robots.txt file (also the crawl-delay directive)
 * Adds PDF files to the sitemap
+* Generation of image sitemaps (Token required)
 
 = Upcoming Technical Features =
 * Support for noindex meta elements
-* Generation of image sitemaps
+* Generation of video sitemaps
 
 = Is the service free of charge? =
-The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages, you could buy a token to create a sitemap with up to 15000 pages at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service.
+The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages or you like to integrate an image sitemap, you could buy a token to create a sitemap with up to 15000 pages at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service.
 
 [https://www.marcobeierer.com/tools/sitemap-generator-token](https://www.marcobeierer.com/tools/sitemap-generator-token)
 
@@ -65,3 +66,8 @@ If you like to test if the sitemap generator works fine with your website before
 *Release Date - 30th May, 2015*
 
 * Implemented support for authorization tokens.
+
+= 1.0.0-beta.4 =
+*Release Date - 1st August, 2015*
+
+* Added support for image sitemaps
