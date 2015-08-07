@@ -25,7 +25,8 @@ The [sitemap generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-g
 
 = Additional Technical Features for Paying Customers =
 * Generation of image sitemaps.
-	* Please note: Linked images are also listed as URLs in the free version. Just the support for embedded images (<img> elements) is reserved for paying customers.
+	* Please note: Linked images are also listed as URLs in the free version.
+	* Just the support for embedded images (&lt;img&gt; elements) is reserved for paying customers.
 
 = Upcoming Technical Features =
 * Generation of video sitemaps.
