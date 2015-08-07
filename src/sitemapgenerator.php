@@ -8,8 +8,8 @@
 /*
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/tools/sitemap-generator#wordpress
-Description: An easy to use XML Sitemap Generator for WordPress.
-Version: 1.0.0-beta.5
+Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
+Version: 1.0.0
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: AGPL
