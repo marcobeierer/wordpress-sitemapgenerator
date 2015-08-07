@@ -9,7 +9,7 @@
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/tools/sitemap-generator#wordpress
 Description: A easy to use Sitemap Generator for WordPress
-Version: 1.0.0-beta.4
+Version: 1.0.0-beta.5
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: AGPL

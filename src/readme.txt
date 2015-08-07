@@ -2,8 +2,8 @@
 Contributors: mbsec
 Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, seo, google, yahoo, bing, baidu, yandex
 Requires at least: 4.2
-Tested up to: 4.2.3
-Stable tag: 1.0.0-beta.4
+Tested up to: 4.2.4
+Stable tag: 1.0.0-beta.5
 License: AGPL v3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
@@ -18,21 +18,25 @@ The [sitemap generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-g
 * Low computation costs for your webserver.
 
 = Technical Features =
-* Respects your robots.txt file (also the crawl-delay directive)
-* Adds PDF files to the sitemap
-* Generation of image sitemaps (Token required)
+* Respects your robots.txt file (also the crawl-delay directive).
+* Support for robots (noindex) meta elements.
+* Adds nearly all indexable filetypes (for example .pdf, .xls, .doc) to the sitemap.
+	* See https://support.google.com/webmasters/answer/35287 for a detailed list.
+
+= Additional Technical Features for Paying Customers =
+* Generation of image sitemaps.
+	* Please note: Linked images are also listed as URLs in the free version. Just the support for embedded images (<img> elements) is reserved for paying customers.
 
 = Upcoming Technical Features =
-* Support for noindex meta elements
-* Generation of video sitemaps
+* Generation of video sitemaps.
 
 = Is the service free of charge? =
-The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages or you like to integrate an image sitemap, you could buy a token to create a sitemap with up to 15000 pages at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service.
+The sitemap generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image sitemap, you could buy a token to create a sitemap with up to 15000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
 
 [https://www.marcobeierer.com/tools/sitemap-generator-token](https://www.marcobeierer.com/tools/sitemap-generator-token)
 
 = Limitations =
-By default the sitemap generator indexes the first 500 pages of your website. If your website has more pages, please see the section 'Is the service free of charge?'.
+By default the sitemap generator indexes the first 500 URLs of your website. If your website has more URLs, please see the section 'Is the service free of charge?'.
 
 = Warnings =
 If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the sitemap generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
@@ -70,4 +74,10 @@ If you like to test if the sitemap generator works fine with your website before
 = 1.0.0-beta.4 =
 *Release Date - 1st August, 2015*
 
-* Added support for image sitemaps
+* Added support for image sitemaps.
+
+= 1.0.0-beta.5 =
+*Release Date - 7th August, 2015*
+
+* Added support for nearly all indexable filetypes.
+* Added support for robots (noindex) meta elements.
