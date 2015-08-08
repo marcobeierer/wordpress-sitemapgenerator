@@ -2,7 +2,7 @@
 /*
  * @package    SitemapGenerator
  * @copyright  Copyright (C) 2015 Marco Beierer. All rights reserved.
- * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
 
 /*
