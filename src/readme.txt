@@ -2,9 +2,9 @@
 Contributors: mbsec
 Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, video sitemap, xml video sitemap, video, videos, image seo, video seo, seo, google, yahoo, bing, baidu, yandex
 Requires at least: 4.2
-Tested up to: 4.2.4
-Stable tag: 1.0.0
-License: AGPL v3
+Tested up to: 4.3
+Stable tag: 1.0.1
+License: GPL v3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
 An easy to use XML sitemap generator with support for image and video sitemaps for WordPress.
@@ -30,8 +30,8 @@ The [sitemap generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-g
 	* Currently only HTML5 video elements are supported.
 
 = Upcoming Technical Features =
-* Add support for YouTube and Vimeo videos in video sitemaps.
-* Add support for HTML5 picture elements in image sitemaps.
+* Support for YouTube and Vimeo videos in video sitemaps.
+* Support for HTML5 picture elements in image sitemaps.
 * Automatic daily creation of sitemaps.
 
 = Is the service free of charge? =
@@ -54,31 +54,32 @@ If you like to test if the sitemap generator works fine with your website before
 3. Access the generator with the "Sitemap Generator" button in the sidebar and use the "Generate your sitemap" button to start the generation process. The sitemap will be saved as sitemap.xml in your WordPress root directory. **Be aware that an existing sitemap.xml file would be overwritten without asking.**
 4. Use the "Show the sitemap" button to download your sitemap and check if the generated sitemap is complete.
 
+== Frequently Asked Questions ==
+
+= Why does the sitemap generator not index any URLs of my site? =
+
+The sitemap generator is aware of robots (noindex) meta elements and does not list pages that a marked with the noindex attribute. I saw some websites in the wild, which have added the noindex attribute on each page. Please make sure that this is not the case for your website. Neither the sitemap generator nor a search engine will index your site if the noindex attribute is set globally.
+
+= Is it possible to filter the URLs which are listed in the sitemap? =
+
+The sitemap generator recognizes the noindex attribute if set on a page and respects your robots.txt file. It is thus possible to filter the results with these two mechanisms. A filter function in the plugin is not available, because it makes no sense in my opinion. If a page is not listed in a XML sitemap file, that means not that a search engine will not find it. Sooner or later the search engine finds and indexes the page. So the use of the noindex attribute and robots.txt are a clean solutions which is also respected by all serious search engines.
+
 == Screenshots ==
 
 1. The user interface of the sitemap generator.
 
 == Changelog ==
+= 1.0.1 =
+*Release Date - 8th August, 2015*
 
-= 1.0.0-beta.1 =
-*Release Date - 9th May, 2015*
+* Changed license from AGPL to GPL.
+* Added a FAQ section.
+* Added a note to the plugin admin interface.
 
-* Initial release.
+= 1.0.0 =
+*Release Date - 7th August, 2015*
 
-= 1.0.0-beta.2 =
-*Release Date - 16th May, 2015*
-
-* Improved the user interface.
-
-= 1.0.0-beta.3 =
-*Release Date - 30th May, 2015*
-
-* Implemented support for authorization tokens.
-
-= 1.0.0-beta.4 =
-*Release Date - 1st August, 2015*
-
-* Added support for image sitemaps.
+* Added support for video sitemaps.
 
 = 1.0.0-beta.5 =
 *Release Date - 7th August, 2015*
@@ -86,7 +87,23 @@ If you like to test if the sitemap generator works fine with your website before
 * Added support for nearly all indexable filetypes.
 * Added support for robots (noindex) meta elements.
 
-= 1.0.0 =
-*Release Date - 7th August, 2015*
+= 1.0.0-beta.4 =
+*Release Date - 1st August, 2015*
 
-* Added support for video sitemaps.
+* Added support for image sitemaps.
+
+= 1.0.0-beta.3 =
+*Release Date - 30th May, 2015*
+
+* Implemented support for authorization tokens.
+
+= 1.0.0-beta.2 =
+*Release Date - 16th May, 2015*
+
+* Improved the user interface.
+
+= 1.0.0-beta.1 =
+*Release Date - 9th May, 2015*
+
+* Initial release.
+
