@@ -127,7 +127,7 @@ function sitemap_generator_settings_page() {
 				<?php do_settings_sections('sitemap-generator-settings-group'); ?>
 				<h3>Your Token</h3>
 				<p><textarea name="sitemap-generator-token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('sitemap-generator-token')); ?></textarea></p>
-				<p>The sitemap generator service allows you to create a sitemap with up to 500 pages for free. If your website has more pages or you like to integrate an image sitemap, you can buy a token to create a sitemap with up to 15000 pages at the following website.</p>
+				<p>The sitemap generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token to create a sitemap with up to 50000 URLs at the following website.</p>
 				<p><a href="https://www.marcobeierer.com/tools/sitemap-generator-token">https://www.marcobeierer.com/tools/sitemap-generator-token</a></p>
 				<?php submit_button(); ?>
 			</form>
