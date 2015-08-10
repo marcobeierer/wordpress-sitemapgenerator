@@ -74,6 +74,12 @@ The Sitemap Generator recognizes the noindex attribute if set on a page and resp
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+= 1.0.2 =
+*Release Date - 10th August, 2015*
+
+* Added information about the use of an external server to the readme file.
+* Use the native WordPress functions to load the JavaScript files.
+
 = 1.0.1 =
 *Release Date - 8th August, 2015*
 
