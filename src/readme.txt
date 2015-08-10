@@ -10,7 +10,9 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 An easy to use XML sitemap generator with support for image and video sitemaps for WordPress.
 
 == Description ==
-The [sitemap generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages once.
+The [Sitemap Generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages of your site once.
+
+If you host your website on a dedicated server, you may not need this plugin, because you should have enough resources to generate your sitemap on your server. But if you host your website in a shared environment (as the most WordPress users do), it would be wise to outsource the generation of your sitemap to an external service like this plugin uses to generate the sitemap. This way it is guaranteed that the speed of your website is not affected for your visitors during the generation of the sitemap.
 
 = Features =
 * Simple setup.
@@ -35,18 +37,21 @@ The [sitemap generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-g
 * Automatic daily creation of sitemaps.
 
 = Is the service free of charge? =
-The sitemap generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy a token to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
+The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy a token to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
 
 [https://www.marcobeierer.com/tools/sitemap-generator-token](https://www.marcobeierer.com/tools/sitemap-generator-token)
 
 = Limitations =
-By default the sitemap generator indexes the first 500 URLs of your website. If your website has more URLs, please see the section 'Is the service free of charge?'.
+By default the Sitemap Generator indexes the first 500 URLs of your website. If your website has more URLs, please see the section 'Is the service free of charge?'.
 
 = Warnings =
-If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the sitemap generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
+If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the Sitemap Generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
 
 = Pre-Installation Verification Test =
-If you like to test if the sitemap generator works fine with your website before you will install the plugin, you could use the [online sitemap generator](https://www.marcobeierer.com/tools/sitemap-generator#generator) on my website, which uses to same technology as the plugin to generate the sitemaps.  
+If you like to test if the Sitemap Generator works fine with your website before you will install the plugin, you could use the [Online Sitemap Generator](https://www.marcobeierer.com/tools/sitemap-generator#generator) on my website, which uses to same technology as the plugin to generate the sitemaps.  
+
+= Use of an External Server =
+The Sitemap Generator uses an external server, operated by the developer of the plugin, to crawl your website and detect broken links. This means, that there is some communication between your website and the server. The only data that is communicated to the external server by your website is the URL of your website and the fact that you are using WordPress. The server than crawlers your website (as a normal visitor does) and answers with the generated sitemap.
 
 == Installation ==
 1. Upload the 'mb-sitemap-generator' folder to the '/wp-content/plugins/' directory.
@@ -56,17 +61,17 @@ If you like to test if the sitemap generator works fine with your website before
 
 == Frequently Asked Questions ==
 
-= Why does the sitemap generator not index any URLs of my site? =
+= Why does the Sitemap Generator not index any URLs of my site? =
 
-The sitemap generator is aware of robots (noindex) meta elements and does not list pages that a marked with the noindex attribute. I saw some websites in the wild, which have added the noindex attribute on each page. Please make sure that this is not the case for your website. Neither the sitemap generator nor a search engine will index your site if the noindex attribute is set globally.
+The Sitemap Generator is aware of robots (noindex) meta elements and does not list pages that a marked with the noindex attribute. I saw some websites in the wild, which have added the noindex attribute on each page. Please make sure that this is not the case for your website. Neither the Sitemap Generator nor a search engine will index your site if the noindex attribute is set globally.
 
 = Is it possible to filter the URLs which are listed in the sitemap? =
 
-The sitemap generator recognizes the noindex attribute if set on a page and respects your robots.txt file. It is thus possible to filter the results with these two mechanisms. A filter function in the plugin is not available, because it makes no sense in my opinion. If a page is not listed in a XML sitemap file, that means not that a search engine will not find it. Sooner or later the search engine finds and indexes the page. So the use of the noindex attribute and robots.txt are a clean solutions which is also respected by all serious search engines.
+The Sitemap Generator recognizes the noindex attribute if set on a page and respects your robots.txt file. It is thus possible to filter the results with these two mechanisms. A filter function in the plugin is not available, because it makes no sense in my opinion. If a page is not listed in a XML sitemap file, that means not that a search engine will not find it. Sooner or later the search engine finds and indexes the page. So the use of the noindex attribute and robots.txt are a clean solutions which is also respected by all serious search engines.
 
 == Screenshots ==
 
-1. The user interface of the sitemap generator.
+1. The user interface of the Sitemap Generator.
 
 == Changelog ==
 = 1.0.1 =
