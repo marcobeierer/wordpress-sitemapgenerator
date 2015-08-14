@@ -18,7 +18,7 @@ Text Domain: Marco Beierer
 
 add_action('admin_menu', 'register_sitemap_generator_page');
 function register_sitemap_generator_page() {
-	add_menu_page('Sitemap Generator', 'Sitemap Generator', 'manage_options', 'sitemap-generator', 'sitemap_generator_page', '', 99); 
+	add_menu_page('Sitemap Generator', 'Sitemap Generator', 'manage_options', 'sitemap-generator', 'sitemap_generator_page', '', 132132001);
 }
 
 function sitemap_generator_page() {
