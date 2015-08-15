@@ -74,7 +74,7 @@ function sitemap_proxy_callback() {
 	$ch = curl_init();
 
 	curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress');
-	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 	$token = get_option('sitemap-generator-token');
@@ -90,6 +90,12 @@ function sitemap_proxy_callback() {
 	curl_close($ch);
 
 	if ($statusCode == 200 && $contentType == 'application/xml') {
+
+		$matches = array();
+		preg_match('/\r\nX-Limit-Reached: (.*)\r\n/', $response, $matches);
+		if (isset($matches[1])) {
+			header("X-Limit-Reached: $matches[1]");
+		}
 
 		$reader = new XMLReader();
 		$reader->xml($response, 'UTF-8');

@@ -74,6 +74,9 @@ The Sitemap Generator recognizes the noindex attribute if set on a page and resp
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+* Changed menu postion to a more unqiue one.
+
 = 1.0.2 =
 *Release Date - 10th August, 2015*
 
