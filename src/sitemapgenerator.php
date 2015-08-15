@@ -23,30 +23,49 @@ function register_sitemap_generator_page() {
 
 function sitemap_generator_page() {
 ?>
-	<div class="wrap">
-		<h2>Sitemap Generator</h2>
-		<div class="card" id="sitemap-widget" ng-app="sitemapGeneratorApp" ng-strict-di>
-			<h3>Generate a XML sitemap of your site</h3>
-			<div ng-controller="SitemapController">
-				<form name="sitemapForm">
-					<div class="input-group">
-						<span class="input-group-addon">
-							<i class="glyphicon glyphicon-globe"></i>
-						</span>
-						<span class="input-group-btn">
-							<button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate your sitemap</button>
-							<a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show the sitemap</a>
-						</span>
+	<div ng-app="sitemapGeneratorApp" ng-strict-di>
+		<div ng-controller="SitemapController">
+			<div class="wrap">
+				<h2>Sitemap Generator</h2>
+				<div ng-show="limitReached" class="notice notice-error is-dismissible below-h2 ng-hide">
+					<p>The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may <a href="https://www.marcobeierer.com/tools/sitemap-generator-token">buy a token</a> for the Sitemap Generator to crawl more URLs and create a complete sitemap. A <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator#pricing">pricing table</a> and further information is available at <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator">my website</a>.</p>
+				</div>
+				<div class="card" id="sitemap-widget">
+					<h3>Generate a XML sitemap of your site</h3>
+					<div>
+						<form name="sitemapForm">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-globe"></i>
+								</span>
+								<span class="input-group-btn">
+									<button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate your sitemap</button>
+									<a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show the sitemap</a>
+								</span>
+							</div>
+						</form>
+						<p class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
 					</div>
-				</form>
-				<p class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
+				</div>
+				<div class="card">
+					<p>Your site has <strong>more than 500 URLs</strong> or you like to create an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator#pricing">pricing table</a> for the premium Sitemap Generator plans on <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator">my website</a>.
+				</div>
+				<div class="card">
+					<h4>Write a Review</h4>
+					<p>You like this plugin? I would be happy if you could write a short review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
+					<?php if (new DateTime() <= new DateTime('2015-08-31')): ?>
+					<p>The <strong>first three reviewers in August 2015 get a token</strong> for the generation of sitemaps (including images and videos) with up to 2500 URLs and a lifetime of one year <strong>for free</strong>! The token is worth 40.- Euro. Just write a review and send me the address of your website by email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> and I will send you the token.</p>
+					<?php endif; ?>
+				</div>
+				<div class="card">
+					<h4>Blogging about WordPress?</h4>
+					<p>I offer a special starter package especially for you and your audience. Get a free token for the Sitemap Generator for your blog and up to five tokens for a competition, public give-away or something else.</p>
+					<p>Please find the <a href="https://www.marcobeierer.com/wordpress-plugins/blogger-package">details about the package on my website</a> or write me an email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> if you have any questions.</p>
+				</div>
+				<div class="card">
+					<p>Any questions? Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="wrap">
-		<div class="card">
-			<p>You like this plugin? I would be happy if you could write a short review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
-			<p>Any questions? Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
 		</div>
 	</div>
 <?

@@ -15,6 +15,7 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 		$scope.downloadDisabled = true;
 		$scope.generateDisabled = false;
+		$scope.limitReached = false;
 
 		if (language == 'de' || language == 'de-DE') {
 			$scope.message = "Die Generierung der Sitemap wurde noch nicht gestartet.";
@@ -33,6 +34,7 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 				$scope.downloadDisabled = true;
 				$scope.generateDisabled = true;
 				$scope.pageCount = 0;
+				$scope.limitReached = false;
 
 				if (language == 'de' || language == 'de-DE') {
 					$scope.message = "Die Sitmap wird generiert. Bitte haben Sie einen Moment Geduld.";
@@ -49,6 +51,10 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 						success(function(data, status, headers, config) {
 
 							if (headers('Content-Type') == 'application/xml') {
+
+								if (headers('X-Limit-Reached') == 1) {
+									$scope.limitReached = true;
+								}
 
 								blob = new Blob([ data ], { type : 'application/xml' });
 								$scope.href = (window.URL || window.webkitURL).createObjectURL( blob );
