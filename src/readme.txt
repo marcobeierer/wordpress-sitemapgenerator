@@ -3,7 +3,7 @@ Contributors: mbsec
 Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, video sitemap, xml video sitemap, video, videos, image seo, video seo, seo, google, yahoo, bing, baidu, yandex
 Requires at least: 4.2
 Tested up to: 4.3
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,11 @@ The Sitemap Generator recognizes the noindex attribute if set on a page and resp
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.0.4 =
+*Release Date - 16th August, 2015*
+
+* Bug fix release for issue in 1.0.3.
 
 = 1.0.3 =
 *Release Date - 16th August, 2015*

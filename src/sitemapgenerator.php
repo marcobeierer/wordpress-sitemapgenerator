@@ -9,7 +9,7 @@
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.0.3
+Version: 1.0.4
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
@@ -77,7 +77,7 @@ function load_sitemap_generator_admin_scripts($hook) {
 	if ($hook == 'toplevel_page_sitemap-generator') {
 
 		$angularURL = plugins_url('js/angular.min.js', __FILE__);
-		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=1', __FILE__);
+		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=2', __FILE__);
 
 		wp_enqueue_script('sitemap_generator_angularjs', $angularURL);
 		wp_enqueue_script('sitemap_generator_sitemapgeneratorjs', $sitemapGeneratorURL);
@@ -103,6 +103,10 @@ function sitemap_proxy_callback() {
 
 	$response = curl_exec($ch);
 
+	$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+	$responseHeader = substr($response, 0, $headerSize);
+	$responseBody = substr($response, $headerSize);
+
 	$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 
@@ -111,20 +115,20 @@ function sitemap_proxy_callback() {
 	if ($statusCode == 200 && $contentType == 'application/xml') {
 
 		$matches = array();
-		preg_match('/\r\nX-Limit-Reached: (.*)\r\n/', $response, $matches);
+		preg_match('/\r\nX-Limit-Reached: (.*)\r\n/', $responseHeader, $matches);
 		if (isset($matches[1])) {
 			header("X-Limit-Reached: $matches[1]");
 		}
 
 		$reader = new XMLReader();
-		$reader->xml($response, 'UTF-8');
+		$reader->xml($responseBody, 'UTF-8');
 		$reader->setParserProperty(XMLReader::VALIDATE, true);
 
 		if ($reader->isValid()) { // TODO check if empty?
 
 			$rootPath = get_home_path();
 			if ($rootPath != '') {
-				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $response); // TODO handle and report error
+				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $responseBody); // TODO handle and report error
 			}
 		}
 	}
@@ -139,7 +143,7 @@ function sitemap_proxy_callback() {
 
 	header("Content-Type: $contentType");
 
-	echo $response;
+	echo $responseBody;
 	wp_die();
 }
 
