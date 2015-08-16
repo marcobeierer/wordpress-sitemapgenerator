@@ -51,19 +51,20 @@ function sitemap_generator_page() {
 					<p>Your site has <strong>more than 500 URLs</strong> or you like to create an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator#pricing">pricing table</a> for the premium Sitemap Generator plans on <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator">my website</a>.
 				</div>
 				<div class="card">
-					<h4>Write a Review</h4>
-					<p>You like this plugin? I would be happy if you could write a short review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
+					<h4>You like the Sitemap Generator?</h4>
+					<p>I would be happy if you could write a review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
 					<?php if (new DateTime() <= new DateTime('2015-08-31')): ?>
 					<p>The <strong>first three reviewers in August 2015 get a token</strong> for the generation of sitemaps (including images and videos) with up to 2500 URLs and a lifetime of one year <strong>for free</strong>! The token is worth 40.- Euro. Just write a review and send me the address of your website by email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> and I will send you the token.</p>
 					<?php endif; ?>
 				</div>
 				<div class="card">
 					<h4>Blogging about WordPress?</h4>
-					<p>I offer a special starter package especially for you and your audience. Get a free token for the Sitemap Generator for your blog and up to five tokens for a competition, public give-away or something else.</p>
+					<p>I offer a special starter package for you and your audience. Get a free token for the Sitemap Generator for your blog and up to five tokens for a competition, public give-away or something else.</p>
 					<p>Please find the <a href="https://www.marcobeierer.com/wordpress-plugins/blogger-package">details about the package on my website</a> or write me an email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> if you have any questions.</p>
 				</div>
 				<div class="card">
-					<p>Any questions? Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
+					<h4>Any questions?</h4>
+					<p>Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
 				</div>
 			</div>
 		</div>
