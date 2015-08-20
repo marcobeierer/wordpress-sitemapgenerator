@@ -72,7 +72,7 @@ The Sitemap Generator recognizes the noindex attribute if set on a page and resp
 
 Images which are only linked to directly and not embedded in a HTML page are listed in the image sitemap and not as normal URLs. There is sadly no specification about how to handle such images, but because images need some context to be evaluated correctly in this day and age, I think the image sitemap is the best place to put them.
 
-= How are embedded images from external domains are handled?
+= How are embedded images from external domains are handled? =
 
 If you embed images from external domains on your website, they are listed in the image sitemap. So it's no problem if you deliver your images for example through a CDN services which is available under another domain. Please not that this is only true for embedded images and not if you directly link to images on other domains.
 
