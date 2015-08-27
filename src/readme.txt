@@ -82,6 +82,14 @@ If you embed images from external domains on your website, they are listed in th
 
 == Changelog ==
 
+= 1.2.0 =
+*Release Date - 28th August, 2015*
+
+* Undone change introduced in 1.1.0: Pages blocked by the robots.txt file are not parsed from now on as in versions older than 1.1.0. I rethought this point and think crawlers should respect the robots.txt, no matter which purpose the crawler has.
+* Support for custom user-agent group (MB-SiteCrawler) in robots.txt.
+* The video sitemap supports YouTube videos from now on. The data is fetched through the YouTube Data API.
+* Some text changes in the plugins backend.
+
 = 1.1.0 =
 *Release Date - 21th August, 2015*
 
