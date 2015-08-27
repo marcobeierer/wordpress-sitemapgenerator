@@ -28,7 +28,7 @@ function sitemap_generator_page() {
 			<div class="wrap">
 				<h2>Sitemap Generator</h2>
 				<div ng-show="limitReached" class="notice notice-error is-dismissible below-h2 ng-hide">
-					<p>The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may <a href="https://www.marcobeierer.com/tools/sitemap-generator-token">buy a token</a> for the Sitemap Generator to crawl more URLs and create a complete sitemap. A <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator#pricing">pricing table</a> and further information is available at <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator">my website</a>.</p>
+					<p>The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to crawl up to 50000 URLs and create a complete sitemap.</p>
 				</div>
 				<div class="card" id="sitemap-widget">
 					<h3>Generate a XML sitemap of your site</h3>
@@ -48,7 +48,8 @@ function sitemap_generator_page() {
 					</div>
 				</div>
 				<div class="card">
-					<p>Your site has <strong>more than 500 URLs</strong> or you like to create an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator#pricing">pricing table</a> for the premium Sitemap Generator plans on <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator">my website</a>.
+					<h4>Sitemap Generator Professional</h4>
+					<p>Your site has <strong>more than 500 URLs</strong> or you like to integrate an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Then have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a>.
 				</div>
 				<div class="card">
 					<h4>You like the Sitemap Generator?</h4>
@@ -59,7 +60,7 @@ function sitemap_generator_page() {
 				</div>
 				<div class="card">
 					<h4>Blogging about WordPress?</h4>
-					<p>I offer a special starter package for you and your audience. Get a free token for the Sitemap Generator for your blog and up to five tokens for a competition, public give-away or something else.</p>
+					<p>I offer a special starter package for you and your audience. Get a free token for the Sitemap Generator Professional for your blog and up to five tokens for a competition, public give-away or something else.</p>
 					<p>Please find the <a href="https://www.marcobeierer.com/wordpress-plugins/blogger-package">details about the package on my website</a> or write me an email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> if you have any questions.</p>
 				</div>
 				<div class="card">
@@ -168,8 +169,7 @@ function sitemap_generator_settings_page() {
 				<?php do_settings_sections('sitemap-generator-settings-group'); ?>
 				<h3>Your Token</h3>
 				<p><textarea name="sitemap-generator-token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('sitemap-generator-token')); ?></textarea></p>
-				<p>The sitemap generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token to create a sitemap with up to 50000 URLs at the following website.</p>
-				<p><a href="https://www.marcobeierer.com/tools/sitemap-generator-token">https://www.marcobeierer.com/tools/sitemap-generator-token</a></p>
+				<p>The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to create a sitemap with up to 50000 URLs.</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>
