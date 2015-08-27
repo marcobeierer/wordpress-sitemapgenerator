@@ -21,6 +21,7 @@ If you host your website on a dedicated server, you may not need this plugin, be
 
 = Technical Features =
 * Respects your robots.txt file (also the crawl-delay directive).
+	* You could use the user-agent MB-SiteCrawler to control the crawler.
 * Support for robots (noindex) meta elements.
 * Adds nearly all indexable filetypes (for example .pdf, .xls, .doc) to the sitemap.
 	* See https://support.google.com/webmasters/answer/35287 for a detailed list.
@@ -28,17 +29,17 @@ If you host your website on a dedicated server, you may not need this plugin, be
 = Additional Technical Features for Paying Customers =
 * Generation of image sitemaps.
 * Generation of video sitemaps.
-	* Currently only HTML5 video elements are supported.
+	* Currently only HTML5 video elements and embedded YouTube videos are supported.
 
 = Upcoming Technical Features =
-* Support for YouTube and Vimeo videos in video sitemaps.
+* Support for Vimeo videos in video sitemaps.
 * Support for HTML5 picture elements in image sitemaps.
 * Automatic daily creation of sitemaps.
 
 = Is the service free of charge? =
 The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy a token to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
 
-[https://www.marcobeierer.com/tools/sitemap-generator-token](https://www.marcobeierer.com/tools/sitemap-generator-token)
+[Sitemap Generator Professional](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional)
 
 = Limitations =
 By default the Sitemap Generator indexes the first 500 URLs of your website. If your website has more URLs, please see the section 'Is the service free of charge?'.
@@ -68,6 +69,9 @@ The Sitemap Generator is aware of robots (noindex) meta elements and does not li
 
 The Sitemap Generator recognizes the noindex attribute if set on a page and respects your robots.txt file. It is thus possible to filter the results with these two mechanisms. A filter function in the plugin is not available, because it makes no sense in my opinion. If a page is not listed in a XML sitemap file, that means not that a search engine will not find it. Sooner or later the search engine finds and indexes the page. So the use of the noindex attribute and robots.txt are a clean solutions which is also respected by all serious search engines.
 
+= Which user-agent should I use in the robots.txt file? =
+The Sitemap Generator uses a custom user-agent group named MB-SiteCrawler. This allows you a fine grained control of which pages are parsed and added to the sitemap. If you do not define a group for the custom user-agent, the default set in the * group apply.
+
 = How are images which are not embedded in a page handled? =
 
 Images which are only linked to directly and not embedded in a HTML page are listed in the image sitemap and not as normal URLs. There is sadly no specification about how to handle such images, but because images need some context to be evaluated correctly in this day and age, I think the image sitemap is the best place to put them.
@@ -75,6 +79,10 @@ Images which are only linked to directly and not embedded in a HTML page are lis
 = How are embedded images from external domains are handled? =
 
 If you embed images from external domains on your website, they are listed in the image sitemap. So it's no problem if you deliver your images for example through a CDN services which is available under another domain. Please not that this is only true for embedded images and not if you directly link to images on other domains.
+
+= Does the Sitemap Generator work in my local development environment? =
+
+No, the Sitemap Generator needs to crawl your website and the generator has no access to you local network.
 
 == Screenshots ==
 
