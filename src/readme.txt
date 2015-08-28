@@ -1,9 +1,9 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, video sitemap, xml video sitemap, video, videos, image seo, video seo, seo, google, yahoo, bing, baidu, yandex
+Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, video sitemap, xml video sitemap, video, videos, image seo, video seo, seo, google, youtube, yahoo, bing, baidu, yandex
 Requires at least: 4.2
 Tested up to: 4.3
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
