@@ -36,6 +36,11 @@ If you host your website on a dedicated server, you may not need this plugin, be
 * Support for HTML5 picture elements in image sitemaps.
 * Automatic daily creation of sitemaps.
 
+= Data Aggregation and Indexable File Types =
+I have published a detailed document about how the Sitemap Generator aggregates the data for the generation of sitemaps and which file types are getting indexed on my website.
+
+[Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator-data)
+
 = Is the service free of charge? =
 The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy a token to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
 
@@ -89,6 +94,12 @@ No, the Sitemap Generator needs to crawl your website and the generator has no a
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.2.1 =
+
+* Added support for title and caption in image sitemaps.
+* Added support for tags, view count and region restriction of YouTube videos in video sitemap.
+* Removed CDATA sections and escape the content instead in image and video sitemaps.
 
 = 1.2.0 =
 *Release Date - 28th August, 2015*
