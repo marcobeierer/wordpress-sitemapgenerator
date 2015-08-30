@@ -100,6 +100,7 @@ No, the Sitemap Generator needs to crawl your website and the generator has no a
 * Added support for title and caption in image sitemaps.
 * Added support for tags, view count and region restriction of YouTube videos in video sitemap.
 * Removed CDATA sections and escape the content instead in image and video sitemaps.
+* Added a link to the Sitemap Generator Data overview page in the readme.
 
 = 1.2.0 =
 *Release Date - 28th August, 2015*
