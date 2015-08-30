@@ -24,12 +24,12 @@ If you host your website on a dedicated server, you may not need this plugin, be
 	* You could use the user-agent MB-SiteCrawler to control the crawler.
 * Support for robots (noindex) meta elements.
 * Adds nearly all indexable filetypes (for example .pdf, .xls, .doc) to the sitemap.
-	* See https://support.google.com/webmasters/answer/35287 for a detailed list.
+	* See the document [Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator-data) on my website for more information.
 
 = Additional Technical Features for Paying Customers =
 * Generation of image sitemaps.
 * Generation of video sitemaps.
-	* Currently only HTML5 video elements and embedded YouTube videos are supported.
+	* Currently HTML5 video elements and embedded YouTube videos are supported.
 
 = Upcoming Technical Features =
 * Support for Vimeo videos in video sitemaps.
