@@ -96,6 +96,7 @@ No, the Sitemap Generator needs to crawl your website and the generator has no a
 == Changelog ==
 
 = 1.2.1 =
+*Release Date - 31th August, 2015*
 
 * Added support for title and caption in image sitemaps.
 * Added support for tags, view count and region restriction of YouTube videos in video sitemap.
