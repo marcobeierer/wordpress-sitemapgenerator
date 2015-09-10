@@ -42,7 +42,7 @@ I have published a detailed document about how the Sitemap Generator aggregates 
 [Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator-data)
 
 = Is the service free of charge? =
-The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy a token to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
+The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy the professional version to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
 
 [Sitemap Generator Professional](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional)
 
