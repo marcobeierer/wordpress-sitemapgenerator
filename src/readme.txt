@@ -68,7 +68,13 @@ The Sitemap Generator uses an external server, operated by the developer of the 
 
 = Why does the Sitemap Generator not index any URLs of my site? =
 
-The Sitemap Generator is aware of robots (noindex) meta elements and does not list pages that a marked with the noindex attribute. I saw some websites in the wild, which have added the noindex attribute on each page. Please make sure that this is not the case for your website. Neither the Sitemap Generator nor a search engine will index your site if the noindex attribute is set globally.
+**Noindex set for all pages**
+
+The Sitemap Generator is aware of robots (noindex) meta elements and does not list pages that are marked with the noindex attribute. I saw some websites in the wild, which have added the noindex attribute on each page. Please make sure that this is not the case for your website. Neither the Sitemap Generator nor a search engine will index your site if the noindex attribute is set globally.
+
+**Site crawler blocked**
+
+Another reason for a sitemap with no URLs could be that the crawler of the Sitemap Generator is blocked by your hosting provider. I have observed this issue especially with free and really cheap hosting providers. Some block crawlers (and regular visitors) already after five fast sequential requests. The issue could be fixed by whitelisting the IP of the crawler. However, I think this option is not available for the affected hosting services. Alternatively it is possible to use the crawl-delay directive in your robots.txt to set the delay between two requests.
 
 = Is it possible to filter the URLs which are listed in the sitemap? =
 
