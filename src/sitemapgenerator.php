@@ -174,5 +174,5 @@ function sitemap_generator_settings_page() {
 			</form>
 		</div>
 	</div>
-<?
+<?php
 }

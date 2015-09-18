@@ -25,7 +25,7 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 		$scope.messageClass = "alert-info";
 		$scope.generateClass = "button-primary";
-		$scope.downloadClass = "buttton-default";
+		$scope.downloadClass = "button-default";
 
 		$scope.generate = function() {
 
@@ -37,7 +37,7 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 				$scope.limitReached = false;
 
 				if (language == 'de' || language == 'de-DE') {
-					$scope.message = "Die Sitmap wird generiert. Bitte haben Sie einen Moment Geduld.";
+					$scope.message = "Die Sitemap wird generiert. Bitte haben Sie einen Moment Geduld.";
 				} else {
 					$scope.message = "The sitemap is being generated. Please wait a moment.";
 				}
