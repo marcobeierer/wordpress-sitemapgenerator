@@ -4,12 +4,14 @@
  * @copyright  Copyright (C) 2015 Marco Beierer. All rights reserved.
  * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
+defined('ABSPATH') or die('Restricted access.');
+require_once('shared_functions.php');
 
 /*
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.2.1
+Version: 1.2.2
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
@@ -27,6 +29,12 @@ function sitemap_generator_page() {
 		<div ng-controller="SitemapController">
 			<div class="wrap">
 				<h2>Sitemap Generator</h2>
+
+				<?php
+					cURLCheck();
+					localhostCheck();
+				?>
+
 				<div ng-show="limitReached" class="notice notice-error is-dismissible below-h2 ng-hide">
 					<p>The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to crawl up to 50000 URLs and create a complete sitemap.</p>
 				</div>
