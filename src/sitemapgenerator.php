@@ -5,13 +5,12 @@
  * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
 defined('ABSPATH') or die('Restricted access.');
-require_once('shared_functions.php');
 
 /*
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.2.2
+Version: 1.2.4
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
@@ -24,7 +23,8 @@ function register_sitemap_generator_page() {
 }
 
 function sitemap_generator_page() {
-?>
+	include_once('shared_functions.php'); ?>
+
 	<div ng-app="sitemapGeneratorApp" ng-strict-di>
 		<div ng-controller="SitemapController">
 			<div class="wrap">
