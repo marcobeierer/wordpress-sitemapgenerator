@@ -10,7 +10,7 @@ defined('ABSPATH') or die('Restricted access.');
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.2.4
+Version: 1.2.5
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
@@ -49,7 +49,7 @@ function sitemap_generator_page() {
 								</span>
 							</div>
 						</form>
-						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"</span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
+						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"></span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
 					</div>
 				</div>
 				<div class="card">
