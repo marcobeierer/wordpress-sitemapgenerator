@@ -81,12 +81,10 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 						}).
 						error(function(data, status, headers, config) {
 
-							// TODO handle status 401 unauthorized
-
 							$scope.generateDisabled = false;
 
-							if (status == 401) {
-								$scope.message = "Im Hauptverzeichnis Ihrer Website wurde die Datei allow-sitemap-generator.html nicht gefunden. Bitte legen Sie diese an und probieren es erneut."; // TODO remove this message
+							if (status == 401) { // unauthorized
+								$scope.message = "The validation of your token failed. The token is invalid or has expired. Please try it again or contact me if the token should be valid.";
 							} else {
 								if (language == 'de' || language == 'de-DE') {
 									$scope.message = "Ihre Sitemap konnte leider nicht erstellt werden. Bitte probieren Sie es erneut.";
