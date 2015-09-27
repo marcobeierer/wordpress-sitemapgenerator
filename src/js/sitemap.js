@@ -58,7 +58,7 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 								if (headers('X-Limit-Reached') == 1) {
 
-									$scope.message = "The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may buy a token for the <a href=\"https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional\">Sitemap Generator Professional</a> to crawl up to 50000 URLs and create a complete sitemap.";
+									$scope.message = "The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may buy a token for the <a href=\"https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional\">Sitemap Generator Professional</a> to crawl up to 50'000 URLs and create a complete sitemap. Additionally to a higher URL limit, the professional version also adds images and videos to your sitemap.";
 
 									$scope.messageClass = "alert-danger";
 								}
@@ -106,3 +106,9 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 		}
 	}
 ]);
+
+sitemapGeneratorApp.filter("sanitize", ['$sce', function($sce) {
+	return function(htmlCode){
+		return $sce.trustAsHtml(htmlCode);
+	}
+}]);
