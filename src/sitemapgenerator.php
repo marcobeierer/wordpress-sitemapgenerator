@@ -35,9 +35,6 @@ function sitemap_generator_page() {
 					localhostCheck();
 				?>
 
-				<div ng-show="limitReached" class="notice notice-error is-dismissible below-h2 ng-hide">
-					<p>The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to crawl up to 50000 URLs and create a complete sitemap.</p>
-				</div>
 				<div class="card" id="sitemap-widget">
 					<h3>Generate a XML sitemap of your site</h3>
 					<div>
@@ -52,7 +49,7 @@ function sitemap_generator_page() {
 								</span>
 							</div>
 						</form>
-						<p class="alert well-sm {{ messageClass }}">{{ message }} <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
+						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"</span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
 					</div>
 				</div>
 				<div class="card">

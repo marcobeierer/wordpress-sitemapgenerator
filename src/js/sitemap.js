@@ -15,7 +15,6 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 		$scope.downloadDisabled = true;
 		$scope.generateDisabled = false;
-		$scope.limitReached = false;
 
 		if (language == 'de' || language == 'de-DE') {
 			$scope.message = "Die Generierung der Sitemap wurde noch nicht gestartet.";
@@ -34,7 +33,6 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 				$scope.downloadDisabled = true;
 				$scope.generateDisabled = true;
 				$scope.pageCount = 0;
-				$scope.limitReached = false;
 
 				if (language == 'de' || language == 'de-DE') {
 					$scope.message = "Die Sitemap wird generiert. Bitte haben Sie einen Moment Geduld.";
@@ -52,23 +50,27 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 							if (headers('Content-Type') == 'application/xml') {
 
-								if (headers('X-Limit-Reached') == 1) {
-									$scope.limitReached = true;
-								}
-
 								blob = new Blob([ data ], { type : 'application/xml' });
 								$scope.href = (window.URL || window.webkitURL).createObjectURL( blob );
 
 								$scope.downloadDisabled = false;
 								$scope.generateDisabled = false;
 
-								if (language == 'de' || language == 'de-DE') {
-									$scope.message = "Ihre Sitemap wurde erfolgreich erstellt und im WordPress-Hauptverzeichnis gespeichert.";
-								} else {
-									$scope.message = "The generation of the sitemap was successfull. The sitemap was saved as sitemap.xml in the WordPress root folder.";
+								if (headers('X-Limit-Reached') == 1) {
+
+									$scope.message = "The Sitemap Generator reached the URL limit and the generated sitemap probably isn't complete. You may buy a token for the <a href=\"https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional\">Sitemap Generator Professional</a> to crawl up to 50000 URLs and create a complete sitemap.";
+
+									$scope.messageClass = "alert-danger";
+								}
+								else {
+									if (language == 'de' || language == 'de-DE') {
+										$scope.message = "Ihre Sitemap wurde erfolgreich erstellt und im WordPress-Hauptverzeichnis gespeichert.";
+									} else {
+										$scope.message = "The generation of the sitemap was successfull. The sitemap was saved as sitemap.xml in the WordPress root folder.";
+									}
+									$scope.messageClass = "alert-success";
 								}
 
-								$scope.messageClass = "alert-success";
 								$scope.generateClass = "button-default";
 								$scope.downloadClass = "button-primary";
 							}
