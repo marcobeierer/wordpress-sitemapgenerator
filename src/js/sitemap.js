@@ -85,6 +85,8 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 							if (status == 401) { // unauthorized
 								$scope.message = "The validation of your token failed. The token is invalid or has expired. Please try it again or contact me if the token should be valid.";
+							} else if (status == 500) {
+								$scope.message = "The creation of your sitemap failed with the error:<br/><strong>" + JSON.parse(data) + "</strong>.";
 							} else {
 								if (language == 'de' || language == 'de-DE') {
 									$scope.message = "Ihre Sitemap konnte leider nicht erstellt werden. Bitte probieren Sie es erneut.";
