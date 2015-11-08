@@ -123,7 +123,7 @@ function load_sitemap_generator_admin_scripts($hook) {
 	if ($hook == 'toplevel_page_sitemap-generator') {
 
 		$angularURL = plugins_url('js/angular.min.js', __FILE__);
-		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=3', __FILE__);
+		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=4', __FILE__);
 
 		wp_enqueue_script('sitemap_generator_angularjs', $angularURL);
 		wp_enqueue_script('sitemap_generator_sitemapgeneratorjs', $sitemapGeneratorURL);
