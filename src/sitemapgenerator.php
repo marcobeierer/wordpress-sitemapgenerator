@@ -140,6 +140,10 @@ function sitemap_proxy_callback() {
 		}
 	}
 
+	if ($statusCode == 0) {
+		$statusCode = 503; // service unavailable
+	}
+
 	if (function_exists('http_response_code')) {
 		http_response_code($statusCode);
 	}
