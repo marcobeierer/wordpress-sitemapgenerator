@@ -33,6 +33,7 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 				$scope.downloadDisabled = true;
 				$scope.generateDisabled = true;
 				$scope.pageCount = 0;
+				$scope.stats = null;
 
 				if (language == 'de' || language == 'de-DE') {
 					$scope.message = "Die Sitemap wird generiert. Bitte haben Sie einen Moment Geduld.";
@@ -66,9 +67,13 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 									if (language == 'de' || language == 'de-DE') {
 										$scope.message = "Ihre Sitemap wurde erfolgreich erstellt und im WordPress-Hauptverzeichnis gespeichert.";
 									} else {
-										$scope.message = "The generation of the sitemap was successfull. The sitemap was saved as sitemap.xml in the WordPress root folder.";
+										$scope.message = "The generation of the sitemap was successfull. The sitemap was saved as sitemap.xml in the WordPress root folder. Please see the stats below.";
 									}
 									$scope.messageClass = "alert-success";
+								}
+
+								if (headers('X-Stats') != null) {
+									$scope.stats = JSON.parse(headers('X-Stats'));
 								}
 
 								$scope.generateClass = "button-default";

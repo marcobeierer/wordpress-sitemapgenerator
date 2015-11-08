@@ -52,6 +52,45 @@ function sitemap_generator_page() {
 						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"></span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
 					</div>
 				</div>
+				<div class="card" ng-if="stats">
+					<h4>Crawl Stats</h4>
+					<table>
+						<tr>
+							<td>Crawled resources count:</td>
+							<td>{{ stats.CrawledResourcesCount }}</td>
+						</tr>
+						<tr>
+							<td>Dead resources count:</td>
+							<td>{{ stats.DeadResourcesCount }}</td>
+						</tr>
+						<tr>
+							<td>Timed out resources count:</td>
+							<td>{{ stats.TimedOutResourcesCount }}</td>
+						</tr>
+					</table>
+					<h4>Sitemap Stats</h4>
+					<table>
+						<tr>
+							<td>Sitemap URL count:</td>
+							<td>{{ stats.SitemapURLCount }}</td>
+						</tr>
+						<?php
+							$token = get_option('sitemap-generator-token');
+							if ($token != ''): 
+						?>
+						<tr>
+							<td>Sitemap image count:</td>
+							<td>{{ stats.SitemapImageCount }}</td>
+						</tr>
+						<tr>
+							<td>Sitemap video count:</td>
+							<td>{{ stats.SitemapVideoCount }}</td>
+						</tr>
+						<?php
+							endif; 
+						?>
+					</table>
+				</div>
 				<div class="card">
 					<h4>Sitemap Generator Professional</h4>
 					<p>Your site has <strong>more than 500 URLs</strong> or you like to integrate an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Then have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a>.
@@ -125,6 +164,12 @@ function sitemap_proxy_callback() {
 		preg_match('/\r\nX-Limit-Reached: (.*)\r\n/', $responseHeader, $matches);
 		if (isset($matches[1])) {
 			header("X-Limit-Reached: $matches[1]");
+		}
+
+		$matches = array();
+		preg_match('/\r\nX-Stats: (.*)\r\n/', $responseHeader, $matches);
+		if (isset($matches[1])) {
+			header("X-Stats: $matches[1]");
 		}
 
 		$reader = new XMLReader();
