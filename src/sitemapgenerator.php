@@ -68,6 +68,7 @@ function sitemap_generator_page() {
 							<td>{{ stats.TimedOutResourcesCount }}</td>
 						</tr>
 					</table>
+					<p>Want to find out more about the dead and timed out resources? Please have a look at my <a href="https://wordpress.org/plugins/link-checker/">Link Checker</a> for WordPress.</p>
 					<h4>Sitemap Stats</h4>
 					<table>
 						<tr>
