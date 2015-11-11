@@ -3,7 +3,7 @@ Contributors: mbsec
 Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, video sitemap, xml video sitemap, video, videos, image seo, video seo, seo, google, youtube, yahoo, bing, baidu, yandex
 Requires at least: 4.2
 Tested up to: 4.3
-Stable tag: 1.2.5
+Stable tag: 1.3.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -107,6 +107,18 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.3.0 =
+*Release Date - 11th November, 2015*
+
+* Implemented crawl and sitemap stats.
+* Implemented error message if backend is down.
+* Implemented better error messages to detect problems on startup.
+* Technical changes
+	* Renamed global JS vars (namespacing).
+	* Removed german language strings.
+	* Moved some vars to a separate file to use the same JS file with multiple CMS.
+
 
 = 1.2.5 =
 *Release Date - 27th September, 2015*
