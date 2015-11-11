@@ -49,26 +49,10 @@ function sitemap_generator_page() {
 								</span>
 							</div>
 						</form>
-						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"></span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} pages already crawled.</span></p>
+						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"></span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} URLs already processed.</span></p>
 					</div>
 				</div>
 				<div class="card" ng-if="stats">
-					<h4>Crawl Stats</h4>
-					<table>
-						<tr>
-							<td>Crawled resources count:</td>
-							<td>{{ stats.CrawledResourcesCount }}</td>
-						</tr>
-						<tr>
-							<td>Dead resources count:</td>
-							<td>{{ stats.DeadResourcesCount }}</td>
-						</tr>
-						<tr>
-							<td>Timed out resources count:</td>
-							<td>{{ stats.TimedOutResourcesCount }}</td>
-						</tr>
-					</table>
-					<p>Want to find out more about the dead and timed out resources? Please have a look at my <a href="https://wordpress.org/plugins/link-checker/">Link Checker</a> for WordPress.</p>
 					<h4>Sitemap Stats</h4>
 					<table>
 						<tr>
@@ -91,6 +75,22 @@ function sitemap_generator_page() {
 							endif; 
 						?>
 					</table>
+					<h4>Crawl Stats</h4>
+					<table>
+						<tr>
+							<td>Crawled URLs count:</td>
+							<td>{{ stats.CrawledResourcesCount }}</td>
+						</tr>
+						<tr>
+							<td>Dead URLs count:</td>
+							<td>{{ stats.DeadResourcesCount }}</td>
+						</tr>
+						<tr>
+							<td>Timed out URLs count:</td>
+							<td>{{ stats.TimedOutResourcesCount }}</td>
+						</tr>
+					</table>
+					<p><i>Want to find out more about the dead and timed out URLs? Have a look at my <a href="https://wordpress.org/plugins/link-checker/">Link Checker</a> for WordPress.</i></p>
 				</div>
 				<div class="card">
 					<h4>Sitemap Generator Professional</h4>
