@@ -108,6 +108,8 @@ In the most cases this is due to the fact that you have set a large value for th
 
 == Changelog ==
 
+* Improved cURL error messages.
+
 = 1.3.0 =
 *Release Date - 11th November, 2015*
 
