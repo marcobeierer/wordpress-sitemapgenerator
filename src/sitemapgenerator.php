@@ -125,7 +125,7 @@ function load_sitemap_generator_admin_scripts($hook) {
 
 		$angularURL = plugins_url('js/angular.min.js', __FILE__);
 		$sitemapGeneratorVarsURL = plugins_url('js/sitemap-vars.js?v=1', __FILE__);
-		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=4', __FILE__);
+		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=5', __FILE__);
 
 		wp_enqueue_script('sitemap_generator_angularjs', $angularURL);
 		wp_enqueue_script('sitemap_generator_sitemapgeneratorvarsjs', $sitemapGeneratorVarsURL);
@@ -152,12 +152,25 @@ function sitemap_proxy_callback() {
 
 	$response = curl_exec($ch);
 
-	$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-	$responseHeader = substr($response, 0, $headerSize);
-	$responseBody = substr($response, $headerSize);
+	if ($response === false) {
+		$errorMessage = curl_error($ch);
 
-	$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-	$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+		$responseHeader = '';
+		$responseBody = json_encode($errorMessage);
+
+		$contentType = 'application/json';
+		$statusCode = 504; // gateway timeout
+
+		header('X-CURL-Error: 1');
+	} else {
+		$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+
+		$responseHeader = substr($response, 0, $headerSize);
+		$responseBody = substr($response, $headerSize);
+
+		$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+		$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	}
 
 	curl_close($ch);
 
@@ -186,10 +199,6 @@ function sitemap_proxy_callback() {
 				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $responseBody); // TODO handle and report error
 			}
 		}
-	}
-
-	if ($statusCode == 0) {
-		$statusCode = 503; // service unavailable
 	}
 
 	if (function_exists('http_response_code')) {

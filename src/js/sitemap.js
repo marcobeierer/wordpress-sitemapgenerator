@@ -85,9 +85,16 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 									$scope.message = "The generation of your sitemap failed with the error:<br/><strong>" + JSON.parse(data) + "</strong>.";
 								}
 							} else if (status == 503) {
-								$scope.message = "The backend server is currently unavailable. Please try it again later.";
+								$scope.message = "The backend server is temporarily unavailable. Please try it again later.";
+							} else if (status == 504 && headers('X-CURL-Error') == 1) {
+								var message = JSON.parse(data);
+								if (message == '') {
+									$scope.message = "A cURL error occurred. Please contact the developer of the extensions.";
+								} else {
+									$scope.message = "A cURL error occurred with the error message:<br/><strong>" + message + "</strong>.";
+								}
 							} else {
-								$scope.message = "The generation of your sitemap failed. Please try it again.";
+								$scope.message = "The generation of your sitemap failed. Please try it again or contact the developer of the extensions.";
 							}
 							$scope.messageClass = "alert-danger";
 						});
