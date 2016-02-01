@@ -5,6 +5,19 @@
  */
 defined('ABSPATH') or die('Restricted access.');
 
+if (!function_exists('tokenCheck')) {
+	function tokenCheck($service, $url) {
+		$token = get_option('link-checker-token');
+		if ($token == '') { ?>
+			<div class="notice notice-error below-h2">
+			<p>The scheduler is only available if you have deposited a valid token for the <?php echo $service; ?> Professional in the settings. You could purchase the <a href="https://www.marcobeierer.com/wordpress-plugins/<?php echo $url; ?>-professional"><?php echo $service; ?> Professional</a> on my website</p>
+			</div>
+
+
+		<?php }
+	}
+}
+
 if (!function_exists('cURLCheck')) {
 	function cURLCheck() {
 
@@ -31,7 +44,7 @@ if (!function_exists('cURLCheck')) {
 if (!function_exists('localhostCheck')) {
 	function localhostCheck() {
 
-		if (preg_match('/^https?:\/\/(?:localhost|127\.0\.0\.1)/i', get_site_url()) === 1): // TODO implement a better localhost detection ?>
+		if (preg_match('/^https?:\/\/(?:localhost|127\.0\.0\.1)/i', get_home_url()) === 1): // TODO implement a better localhost detection ?>
 
 			<div class="notice notice-error below-h2">
 				<p>It is not possible to use this plugin in a local development environment. The backend service needs to crawl your website and this is just possible if your site is reachable from the internet.</p>
