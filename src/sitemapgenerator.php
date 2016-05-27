@@ -140,7 +140,7 @@ function sitemap_proxy_callback() {
 
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress');
+	curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress&max_fetchers=' . get_option('max-fetchers', 10));
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -223,6 +223,7 @@ function register_sitemap_generator_settings_page() {
 
 function register_sitemap_generator_settings() {
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-token');
+	register_setting('sitemap-generator-settings-group', 'max-fetchers', 'intval');
 }
 
 function sitemap_generator_settings_page() {
@@ -236,6 +237,15 @@ function sitemap_generator_settings_page() {
 				<h3>Your Token</h3>
 				<p><textarea name="sitemap-generator-token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('sitemap-generator-token')); ?></textarea></p>
 				<p>The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to create a sitemap with up to 50000 URLs.</p>
+				<h3>Concurrent Connections</h3>
+				<p>
+					<select name="max-fetchers" style="width: 100%;">
+					<?php for ($i = 1; $i <= 10; $i++) { ?>
+						<option <?php if (get_option('max-fetchers', 10) === $i) { ?>selected<?php } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+					<?php } ?>
+					</select>
+				</p>
+				<p>Number of the maximal concurrent connections. The default value is ten concurrent connections, but some hosters do not allow ten concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with ten concurrent connections. With this option you could limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances.</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>
