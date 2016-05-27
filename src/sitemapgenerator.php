@@ -125,7 +125,7 @@ function load_sitemap_generator_admin_scripts($hook) {
 
 		$angularURL = plugins_url('js/angular.min.js', __FILE__);
 		$sitemapGeneratorVarsURL = plugins_url('js/sitemap-vars.js?v=1', __FILE__);
-		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=5', __FILE__);
+		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=6', __FILE__);
 
 		wp_enqueue_script('sitemap_generator_angularjs', $angularURL);
 		wp_enqueue_script('sitemap_generator_sitemapgeneratorvarsjs', $sitemapGeneratorVarsURL);
@@ -209,6 +209,7 @@ function sitemap_proxy_callback() {
 	}
 
 	header("Content-Type: $contentType");
+	header('Cache-Control: no-store');
 
 	echo $responseBody;
 	wp_die();
