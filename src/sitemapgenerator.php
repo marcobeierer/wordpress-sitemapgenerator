@@ -115,7 +115,7 @@ function sitemap_generator_page() {
 			</div>
 		</div>
 	</div>
-<?
+<?php
 }
 
 add_action('admin_enqueue_scripts', 'load_sitemap_generator_admin_scripts');
