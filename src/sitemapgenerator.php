@@ -92,10 +92,14 @@ function sitemap_generator_page() {
 					</table>
 					<p><i>Want to find out more about the dead and timed out URLs? Have a look at my <a href="https://wordpress.org/plugins/link-checker/">Link Checker</a> for WordPress.</i></p>
 				</div>
+				
+				<?php if (get_option('sitemap-generator-token') == ''): ?>
 				<div class="card">
 					<h4>Sitemap Generator Professional</h4>
 					<p>Your site has <strong>more than 500 URLs</strong> or you like to integrate an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Then have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a>.
 				</div>
+				<?php endif; ?>
+
 				<div class="card">
 					<h4>You like the Sitemap Generator?</h4>
 					<p>I would be happy if you could write a review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
@@ -103,11 +107,15 @@ function sitemap_generator_page() {
 					<p>The <strong>first three reviewers in August 2015 get a token</strong> for the generation of sitemaps (including images and videos) with up to 2500 URLs and a lifetime of one year <strong>for free</strong>! The token is worth 40.- Euro. Just write a review and send me the address of your website by email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> and I will send you the token.</p>
 					<?php endif; ?>
 				</div>
+
+				<?php if (get_option('sitemap-generator-token') == ''): ?>
 				<div class="card">
 					<h4>Blogging about WordPress?</h4>
 					<p>I offer a special starter package for you and your audience. Get a free token for the Sitemap Generator Professional for your blog and up to five tokens for a competition, public give-away or something else.</p>
 					<p>Please find the <a href="https://www.marcobeierer.com/wordpress-plugins/blogger-package">details about the package on my website</a> or write me an email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> if you have any questions.</p>
 				</div>
+				<?php endif; ?>
+
 				<div class="card">
 					<h4>Any questions?</h4>
 					<p>Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
@@ -135,12 +143,12 @@ function load_sitemap_generator_admin_scripts($hook) {
 
 add_action('wp_ajax_sitemap_proxy', 'sitemap_proxy_callback');
 function sitemap_proxy_callback() {
-	$baseurl = get_home_url();
+	//$baseurl = get_home_url();
+	$baseurl = 'http://www.aboutcms.de';
 	$baseurl64 = strtr(base64_encode($baseurl), '+/', '-_');
 
 	$ch = curl_init();
 
-	//curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress&max_fetchers=' . (int) get_option('sitemap-generator-max-fetchers', 10));
 	curl_setopt($ch, CURLOPT_URL, sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d', $baseurl64, get_option('sitemap-generator-max-fetchers', 10), get_option('sitemap-generator-ignore-embedded-content', 0)));
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
