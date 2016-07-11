@@ -143,8 +143,7 @@ function load_sitemap_generator_admin_scripts($hook) {
 
 add_action('wp_ajax_sitemap_proxy', 'sitemap_proxy_callback');
 function sitemap_proxy_callback() {
-	//$baseurl = get_home_url();
-	$baseurl = 'http://www.aboutcms.de';
+	$baseurl = get_home_url();
 	$baseurl64 = strtr(base64_encode($baseurl), '+/', '-_');
 
 	$ch = curl_init();
@@ -204,7 +203,11 @@ function sitemap_proxy_callback() {
 
 			$rootPath = get_home_path();
 			if ($rootPath != '') {
-				file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $responseBody); // TODO handle and report error
+				$success = file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $responseBody); // TODO handle and report error
+				if ($success === false) {
+					$statusCode = 500;
+					header('X-Write-Error: 1');
+				}
 			}
 		}
 	}

@@ -88,7 +88,9 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 						if (status == 401) { // unauthorized
 							$scope.message = "The validation of your token failed. The token is invalid or has expired. Please try it again or contact me if the token should be valid.";
 						} else if (status == 500) {
-							if (data != '' && headers('Content-Type').startsWith('application/json')) {
+							if (headers('X-Write-Error') == 1) {
+								$scope.message = "Could not write sitemap to file. The reason for that could be a permission issue or that not enough space is available.";
+							} else if (data != '' && headers('Content-Type').startsWith('application/json')) {
 								$scope.message = "The generation of your sitemap failed with the error:<br/><strong>" + JSON.parse(data) + "</strong>.";
 							} else {
 								$scope.message = "The generation of your sitemap failed. Please try it again.";
