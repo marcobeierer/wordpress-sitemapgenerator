@@ -140,7 +140,8 @@ function sitemap_proxy_callback() {
 
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress&max_fetchers=' . (int) get_option('sitemap-generator-max-fetchers', 10));
+	//curl_setopt($ch, CURLOPT_URL, 'https://api.marcobeierer.com/sitemap/v2/' . $baseurl64 . '?pdfs=1&origin_system=wordpress&max_fetchers=' . (int) get_option('sitemap-generator-max-fetchers', 10));
+	curl_setopt($ch, CURLOPT_URL, sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d', $baseurl64, get_option('sitemap-generator-max-fetchers', 10), get_option('sitemap-generator-ignore-embedded-content', 0)));
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -224,6 +225,7 @@ function register_sitemap_generator_settings_page() {
 function register_sitemap_generator_settings() {
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-token');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-max-fetchers', 'intval');
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-ignore-embedded-content', 'intval');
 }
 
 function sitemap_generator_settings_page() {
@@ -246,6 +248,14 @@ function sitemap_generator_settings_page() {
 					</select>
 				</p>
 				<p>Number of the maximal concurrent connections. The default value is ten concurrent connections, but some hosters do not allow ten concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with ten concurrent connections. With this option you could limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances.</p>
+				<h3>Ignore Embedded Content</h3>
+				<p>
+					<select name="sitemap-generator-ignore-embedded-content" style="width: 100%;">
+						<option <?php if ((int) get_option('sitemap-generator-ignore-embedded-content', 0) === 0) { ?>selected<?php } ?> value="0">No</option>
+						<option <?php if ((int) get_option('sitemap-generator-ignore-embedded-content', 0) === 1) { ?>selected<?php } ?> value="1">Yes</option>
+					</select>
+				</p>
+				<p>Do not add embedded content, like for example images, to the sitemap. This option is only useful if you are using a valid token. Without a token, embedded content is never added to  the sitemap.</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>
