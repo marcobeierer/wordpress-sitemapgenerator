@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    SitemapGenerator
- * @copyright  Copyright (C) 2015 Marco Beierer. All rights reserved.
+ * @copyright  Copyright (C) 2015 - 2016 Marco Beierer. All rights reserved.
  * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
 defined('ABSPATH') or die('Restricted access.');
@@ -10,7 +10,7 @@ defined('ABSPATH') or die('Restricted access.');
 Plugin Name: Sitemap Generator
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.3.1
+Version: 1.4.0
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
