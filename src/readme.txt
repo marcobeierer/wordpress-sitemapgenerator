@@ -109,6 +109,11 @@ In the most cases this is due to the fact that you have set a large value for th
 
 == Changelog ==
 
+= Next =
+*Release Date - ...*
+
+* Fixed returned status code of failing proxy requests.
+
 = 1.4.0 =
 *Release Date - 12th July, 2016*
 
