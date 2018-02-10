@@ -216,7 +216,7 @@ function sitemap_proxy_callback() {
 	header('Cache-Control: no-store');
 
 	echo $responseBody;
-	wp_die(null, '', $statusCode);
+	wp_die('', '', $statusCode);
 }
 
 add_action('admin_menu', 'register_sitemap_generator_settings_page');
