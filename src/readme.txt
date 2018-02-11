@@ -1,9 +1,9 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, site map, sitemap.xml, xml sitemap, image sitemap, xml image sitemap, image, images, video sitemap, xml video sitemap, video, videos, image seo, video seo, seo, google, youtube, yahoo, bing, baidu, yandex
+Tags: sitemap, sitemap.xml, xml sitemap, image sitemap, video sitemap, xml image sitemap, image, site map, images, xml video sitemap, video, videos, image seo, video seo, seo, google, youtube, yahoo, bing, baidu, yandex
 Requires at least: 4.2
-Tested up to: 4.5
-Stable tag: 1.4.0
+Tested up to: 4.8
+Stable tag: 1.4.1
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -109,10 +109,12 @@ In the most cases this is due to the fact that you have set a large value for th
 
 == Changelog ==
 
-= Next =
-*Release Date - ...*
+= 1.4.1 =
+*Release Date - 11th February, 2018*
 
-* Fixed returned status code of failing proxy requests.
+* Bugfixes
+	* Fixed returned status code of failing proxy requests.
+	* fixed call to wp_die()
 
 = 1.4.0 =
 *Release Date - 12th July, 2016*
