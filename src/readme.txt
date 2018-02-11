@@ -112,6 +112,7 @@ In the most cases this is due to the fact that you have set a large value for th
 = 1.4.1 =
 *Release Date - 11th February, 2018*
 
+* Improvements to the crawler.
 * Bugfixes
 	* Fixed returned status code of failing proxy requests.
 	* fixed call to wp_die()
