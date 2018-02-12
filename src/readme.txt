@@ -14,6 +14,8 @@ The [Sitemap Generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-g
 
 If you host your website on a dedicated server, you may not need this plugin, because you should have enough resources to generate your sitemap on your server. But if you host your website in a shared environment (as the most WordPress users do), it would be wise to outsource the generation of your sitemap to an external service like this plugin uses to generate the sitemap. This way it is guaranteed that the speed of your website is not affected for your visitors during the generation of the sitemap.
 
+[youtube https://www.youtube.com/watch?v=odTnCazabSE]
+
 = Features =
 * Simple setup.
 * Works out of the box with all WordPress plugins.
@@ -112,7 +114,7 @@ In the most cases this is due to the fact that you have set a large value for th
 = 1.4.2 =
 *Release Date - 11th February, 2018*
 
-* Updated compatibility information (tested up to WordPress 4.9)
+* Updated compatibility information (tested up to WordPress 4.9).
 
 = 1.4.1 =
 *Release Date - 11th February, 2018*
