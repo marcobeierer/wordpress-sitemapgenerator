@@ -102,7 +102,7 @@ function sitemap_generator_page() {
 
 				<div class="card">
 					<h4>You like the Sitemap Generator?</h4>
-					<p>I would be happy if you could write a review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
+					<p>I would be happy if you can write a review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
 					<?php if (new DateTime() <= new DateTime('2015-08-31')): ?>
 					<p>The <strong>first three reviewers in August 2015 get a token</strong> for the generation of sitemaps (including images and videos) with up to 2500 URLs and a lifetime of one year <strong>for free</strong>! The token is worth 40.- Euro. Just write a review and send me the address of your website by email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> and I will send you the token.</p>
 					<?php endif; ?>
@@ -148,7 +148,7 @@ function sitemap_proxy_callback() {
 
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d', $baseurl64, get_option('sitemap-generator-max-fetchers', 10), get_option('sitemap-generator-ignore-embedded-content', 0)));
+	curl_setopt($ch, CURLOPT_URL, sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d', $baseurl64, get_option('sitemap-generator-max-fetchers', 3), get_option('sitemap-generator-ignore-embedded-content', 0)));
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -246,11 +246,11 @@ function sitemap_generator_settings_page() {
 				<p>
 					<select name="sitemap-generator-max-fetchers" style="width: 100%;">
 					<?php for ($i = 1; $i <= 10; $i++) { ?>
-						<option <?php if ((int) get_option('sitemap-generator-max-fetchers', 10) === $i) { ?>selected<?php } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<option <?php if ((int) get_option('sitemap-generator-max-fetchers', 3) === $i) { ?>selected<?php } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
 					<?php } ?>
 					</select>
 				</p>
-				<p>Number of the maximal concurrent connections. The default value is ten concurrent connections, but some hosters do not allow ten concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with ten concurrent connections. With this option you could limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances.</p>
+				<p>Number of the maximal concurrent connections. The default value is three concurrent connections, but some hosters do not allow three concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with three concurrent connections. With this option you can limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances. You can also increase the number of concurrent connections if your server can handle it.</p>
 				<h3>Ignore Embedded Content</h3>
 				<p>
 					<select name="sitemap-generator-ignore-embedded-content" style="width: 100%;">
