@@ -33,6 +33,8 @@ push-static.marcobeierer.com.sh
 cp -r src/* .svn/trunk/
 cd .svn
 svn add trunk/*
+svn add trunk/*/* 				# workaround to add files in subdirectories
+svn add trunk/*/*/* 			# needs to be changed if we have more than three layers
 svn ci -m "synced with git"
 svn cp trunk tags/${1}
 svn ci -m "published version $1"
