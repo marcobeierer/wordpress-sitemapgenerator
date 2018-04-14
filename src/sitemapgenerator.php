@@ -151,6 +151,7 @@ function sitemap_proxy_callback() {
 	curl_setopt($ch, CURLOPT_URL, sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d', $baseurl64, get_option('sitemap-generator-max-fetchers', 3), get_option('sitemap-generator-ignore-embedded-content', 0)));
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 
 	$token = get_option('sitemap-generator-token');
 	if ($token != '') {
