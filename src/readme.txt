@@ -1,6 +1,6 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, sitemap.xml, xml sitemap, image sitemap, video sitemap, xml image sitemap, image, site map, images, xml video sitemap, video, videos, image seo, video seo, seo, google, youtube, yahoo, bing, baidu, yandex
+Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.2
 Tested up to: 4.9
 Stable tag: 1.4.3
