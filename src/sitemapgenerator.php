@@ -108,7 +108,7 @@ function sitemap_generator_page() {
 					<?php endif; ?>
 				</div>
 
-				<?php if (get_option('sitemap-generator-token') == ''): ?>
+				<?php if (false && get_option('sitemap-generator-token') == ''): ?>
 				<div class="card">
 					<h4>Blogging about WordPress?</h4>
 					<p>I offer a special starter package for you and your audience. Get a free token for the Sitemap Generator Professional for your blog and up to five tokens for a competition, public give-away or something else.</p>
