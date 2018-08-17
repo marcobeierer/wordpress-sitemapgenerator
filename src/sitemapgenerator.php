@@ -148,7 +148,16 @@ function sitemap_proxy_callback() {
 
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d', $baseurl64, get_option('sitemap-generator-max-fetchers', 3), get_option('sitemap-generator-ignore-embedded-content', 0)));
+	//curl_setopt($ch, CURLOPT_URL, sprintf('http://192.168.1.76:9999/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d', 
+	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d', 
+		$baseurl64, get_option('sitemap-generator-max-fetchers', 3), 
+		get_option('sitemap-generator-ignore-embedded-content', 0),
+		get_option('sitemap-generator-reference-count-threshold', -1)
+	);
+
+	error_log($requestURL);
+
+	curl_setopt($ch, CURLOPT_URL, $requestURL);
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -174,16 +183,15 @@ function sitemap_proxy_callback() {
 		$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
 		$responseHeader = substr($response, 0, $headerSize);
-		$responseBody = substr($response, $headerSize);
+		$responseBody = substr($response, $headerSize); // returns json string if error, or xml if sitemap
 
 		$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
-		$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$statusCode = intval(curl_getinfo($ch, CURLINFO_HTTP_CODE));
 	}
 
 	curl_close($ch);
 
 	if ($statusCode == 200 && $contentType == 'application/xml') {
-
 		$matches = array();
 		preg_match('/\r\nX-Limit-Reached: (.*)\r\n/', $responseHeader, $matches);
 		if (isset($matches[1])) {
@@ -201,12 +209,12 @@ function sitemap_proxy_callback() {
 		$reader->setParserProperty(XMLReader::VALIDATE, true);
 
 		if ($reader->isValid()) { // TODO check if empty?
-
 			$rootPath = get_home_path();
 			if ($rootPath != '') {
 				$success = file_put_contents($rootPath . DIRECTORY_SEPARATOR . 'sitemap.xml', $responseBody); // TODO handle and report error
 				if ($success === false) {
 					$statusCode = 500;
+					$responseBody = json_encode('could not write sitemap to disk');
 					header('X-Write-Error: 1');
 				}
 			}
@@ -216,8 +224,15 @@ function sitemap_proxy_callback() {
 	header("Content-Type: $contentType");
 	header('Cache-Control: no-store');
 
-	echo $responseBody;
-	wp_die('', '', $statusCode);
+	// recheck status code because it could have been set to 500 in condition above
+	// NOTE the following cannot be used for if statusCode != 200 because wp_die calls _ajax_wp_die_handler and there the status code is overwritten and always set to 200
+	if ($statusCode == 200 && $contentType == 'application/xml') {
+		echo $responseBody;
+		wp_die('', '', $statusCode);
+	} 
+	else {
+		wp_send_json(json_decode($responseBody), $statusCode);
+	}
 }
 
 add_action('admin_menu', 'register_sitemap_generator_settings_page');
@@ -230,6 +245,7 @@ function register_sitemap_generator_settings() {
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-token');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-max-fetchers', 'intval');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-ignore-embedded-content', 'intval');
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-reference-count-threshold', 'intval');
 }
 
 function sitemap_generator_settings_page() {
@@ -243,6 +259,7 @@ function sitemap_generator_settings_page() {
 				<h3>Your Token</h3>
 				<p><textarea name="sitemap-generator-token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('sitemap-generator-token')); ?></textarea></p>
 				<p>The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to create a sitemap with up to 50000 URLs.</p>
+
 				<h3>Concurrent Connections</h3>
 				<p>
 					<select name="sitemap-generator-max-fetchers" style="width: 100%;">
@@ -252,6 +269,7 @@ function sitemap_generator_settings_page() {
 					</select>
 				</p>
 				<p>Number of the maximal concurrent connections. The default value is three concurrent connections, but some hosters do not allow three concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with three concurrent connections. With this option you can limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances. You can also increase the number of concurrent connections if your server can handle it.</p>
+
 				<h3>Ignore Embedded Content</h3>
 				<p>
 					<select name="sitemap-generator-ignore-embedded-content" style="width: 100%;">
@@ -260,6 +278,20 @@ function sitemap_generator_settings_page() {
 					</select>
 				</p>
 				<p>Do not add embedded content, like for example images, to the sitemap. This option is only useful if you are using a valid token. Without a token, embedded content is never added to  the sitemap.</p>
+
+				<h3>Reference Count Threshold</h3>
+				<p>
+					<select name="sitemap-generator-reference-count-threshold" style="width: 100%;">
+					<option <?php if ((int) get_option('sitemap-generator-reference-count-threshold', -1) === -1) { ?>selected<?php } ?> value="-1">No Threshold</option>
+					<?php for ($i = 0; $i <= 100; $i++) { ?>
+						<option <?php if ((int) get_option('sitemap-generator-reference-count-threshold', -1) === $i) { ?>selected<?php } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+					<?php } ?>
+					</select>
+				</p>
+				<p>With the reference count threshold you can define that images and videos that are embedded on more than the selected number of HTML pages are excluded from the sitemap.</p>
+				<p>This option is for example useful if you have an image in the header or footer of your website that you do not like to include in the sitemap.</p>
+				<p>If no threshold is selected, all images and videos are included in the sitemap, even if they are embedded on all HTML pages. If you set the threshold to 0, no images and videos are included in the sitemap. A value of for example 5 means that all images and videos that are embedded on more than 5 HTML pages are excluded from the sitemap. However, if the excluded image or video is also embedded on the frontpage, it is assigned to the frontpage and included once in the sitemap. Images that are linked (not embedded) are always added to the sitemap, independent of this option.</p>
+				<p>The selected value does not affect the URL limit because the images and videos have to be crawled even if they get excluded finally.</p>
 				<?php submit_button(); ?>
 			</form>
 		</div>
