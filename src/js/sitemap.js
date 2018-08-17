@@ -35,6 +35,8 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 
 				$scope.generateClass = sitemapGeneratorVars.btnPrimaryClass;
 				$scope.downloadClass = sitemapGeneratorVars.btnDefaultClass;
+
+				$scope.retries = 0;
 				
 				var poller = function() {
 					var proxyURL = sitemapGeneratorVars.proxyURL;
@@ -50,6 +52,8 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 						},
 					}).
 					success(function(data, status, headers, config) {
+						$scope.retries = 0;
+
 						if (headers('Content-Type').startsWith('application/xml')) {
 
 							sitemapGeneratorBlob = new Blob([ data ], { type : 'application/xml' });
@@ -104,6 +108,10 @@ sitemapGeneratorApp.controller('SitemapController', ['$scope', '$http', '$timeou
 							} else {
 								$scope.message = "A cURL error occurred with the error message:<br/><strong>" + message + "</strong>.";
 							}
+						} else if (status == 0 && $scope.retries < 3) { // statusCode 0 means that the request was not sent or no response was received
+							$scope.retries++;
+							$timeout(poller, 1000);
+							return;
 						} else {
 							$scope.message = "The generation of your sitemap failed. Please try it again or contact the developer of the extensions.";
 						}

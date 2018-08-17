@@ -144,6 +144,7 @@ function load_sitemap_generator_admin_scripts($hook) {
 add_action('wp_ajax_sitemap_proxy', 'sitemap_proxy_callback');
 function sitemap_proxy_callback() {
 	$baseurl = get_home_url();
+	$baseurl = 'https://www.aboutcms.de/'; 
 	$baseurl64 = strtr(base64_encode($baseurl), '+/', '-_');
 
 	$ch = curl_init();
@@ -154,8 +155,6 @@ function sitemap_proxy_callback() {
 		get_option('sitemap-generator-ignore-embedded-content', 0),
 		get_option('sitemap-generator-reference-count-threshold', -1)
 	);
-
-	error_log($requestURL);
 
 	curl_setopt($ch, CURLOPT_URL, $requestURL);
 	curl_setopt($ch, CURLOPT_HEADER, true);
