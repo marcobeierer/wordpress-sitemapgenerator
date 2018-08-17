@@ -3,7 +3,7 @@ Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.2
 Tested up to: 4.9
-Stable tag: 1.4.3
+Stable tag: 1.5.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -110,6 +110,13 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.5.0 =
+*Release Date - 17th August, 2018*
+
+* Added a new option "Reference Count Threshold" to exclude images and videos that are embedded on multiple pages.
+* Fixed some error handling bugs in Ajax requests.
+* Small improvements of crawler.
 
 = 1.4.3 =
 *Release Date - 14th April, 2018*
