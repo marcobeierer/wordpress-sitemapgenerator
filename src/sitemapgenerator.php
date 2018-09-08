@@ -148,11 +148,11 @@ function sitemap_proxy_callback() {
 
 	$ch = curl_init();
 
-	//curl_setopt($ch, CURLOPT_URL, sprintf('http://192.168.1.76:9999/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d', 
-	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d', 
+	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d&query_params_to_remove=%s', 
 		$baseurl64, get_option('sitemap-generator-max-fetchers', 3), 
 		get_option('sitemap-generator-ignore-embedded-content', 0),
-		get_option('sitemap-generator-reference-count-threshold', -1)
+		get_option('sitemap-generator-reference-count-threshold', -1),
+		urlencode(get_option('sitemap-generator-query-params-to-remove', ''))
 	);
 
 	curl_setopt($ch, CURLOPT_URL, $requestURL);
@@ -244,6 +244,7 @@ function register_sitemap_generator_settings() {
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-max-fetchers', 'intval');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-ignore-embedded-content', 'intval');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-reference-count-threshold', 'intval');
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-query-params-to-remove'); // string is default
 }
 
 function sitemap_generator_settings_page() {
@@ -290,6 +291,15 @@ function sitemap_generator_settings_page() {
 				<p>This option is for example useful if you have an image in the header or footer of your website that you do not like to include in the sitemap.</p>
 				<p>If no threshold is selected, all images and videos are included in the sitemap, even if they are embedded on all HTML pages. If you set the threshold to 0, no images and videos are included in the sitemap. A value of for example 5 means that all images and videos that are embedded on more than 5 HTML pages are excluded from the sitemap. However, if the excluded image or video is also embedded on the frontpage, it is assigned to the frontpage and included once in the sitemap. Images that are linked (not embedded) are always added to the sitemap, independent of this option.</p>
 				<p>The selected value does not affect the URL limit because the images and videos have to be crawled even if they get excluded finally.</p>
+
+				<h3>Query Params To Remove</h3>
+				<p>
+					<input style="width: 100%;" type="text" name="sitemap-generator-query-params-to-remove" value="<?php echo get_option('sitemap-generator-query-params-to-remove', ''); ?>" />
+				</p>
+				<p>An ampersend (&amp;) separated list of query parameters that are removed from each URL before the URL is processed. This could be useful if you have for example timestamps in your URLs.</p>
+				<p>If you like to remove the query parameters <em>q</em> and <em>timestamp</em> from all URLs, a valid value would for example be:</p>
+				<pre>q&amp;timestamp</pre>
+
 				<?php submit_button(); ?>
 			</form>
 		</div>
