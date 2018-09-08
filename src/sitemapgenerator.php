@@ -148,11 +148,12 @@ function sitemap_proxy_callback() {
 
 	$ch = curl_init();
 
-	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d&query_params_to_remove=%s', 
+	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d&query_params_to_remove=%s&disable_cookies=%d', 
 		$baseurl64, get_option('sitemap-generator-max-fetchers', 3), 
 		get_option('sitemap-generator-ignore-embedded-content', 0),
 		get_option('sitemap-generator-reference-count-threshold', -1),
-		urlencode(get_option('sitemap-generator-query-params-to-remove', ''))
+		urlencode(get_option('sitemap-generator-query-params-to-remove', '')),
+		get_option('sitemap-generator-disable-cookies', 0)
 	);
 
 	curl_setopt($ch, CURLOPT_URL, $requestURL);
@@ -245,6 +246,7 @@ function register_sitemap_generator_settings() {
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-ignore-embedded-content', 'intval');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-reference-count-threshold', 'intval');
 	register_setting('sitemap-generator-settings-group', 'sitemap-generator-query-params-to-remove'); // string is default
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-disable-cookies', 'intval');
 }
 
 function sitemap_generator_settings_page() {
@@ -299,6 +301,16 @@ function sitemap_generator_settings_page() {
 				<p>An ampersend (&amp;) separated list of query parameters that are removed from each URL before the URL is processed. This could be useful if you have for example timestamps in your URLs.</p>
 				<p>If you like to remove the query parameters <em>q</em> and <em>timestamp</em> from all URLs, a valid value would for example be:</p>
 				<pre>q&amp;timestamp</pre>
+
+				<h3>Disable Cookies</h3>
+				<p>
+					<select name="sitemap-generator-disable-cookies" style="width: 100%;">
+						<option <?php if ((int) get_option('sitemap-generator-disable-cookies', 0) === 0) { ?>selected<?php } ?> value="0">No</option>
+						<option <?php if ((int) get_option('sitemap-generator-disable-cookies', 0) === 1) { ?>selected<?php } ?> value="1">Yes</option>
+					</select>
+				</p>
+				<p>The Sitemap Generator crawler has cookie support enabled by default. Thus the cookies that are set by your website are used for all subsequent requests. After each run, all cookies get deleted.</p>
+				<p>Normally you like to have cookie support enabled because human visitors usually have cookies enabled and with cookie support, the Sitemap Generator can behave like a human visitor. However, if you have reasons to disable cookie support, you do it with this option.</p>
 
 				<?php submit_button(); ?>
 			</form>

@@ -111,6 +111,12 @@ In the most cases this is due to the fact that you have set a large value for th
 
 == Changelog ==
 
+= 1.6.0 =
+*Release Date - 8th September, 2018*
+
+* New option to disable cookie support.
+* New option to remove query params from URLs.
+
 = 1.5.2 =
 *Release Date - 17th August, 2018*
 
