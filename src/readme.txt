@@ -2,8 +2,8 @@
 Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.2
-Tested up to: 5.1
-Stable tag: 1.6.1
+Tested up to: 5.2
+Stable tag: 1.6.2
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -110,6 +110,11 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.6.2 =
+*Release Date - 1st July, 2019*
+
+* Updated 'Tested up to' information.
 
 = 1.6.1 =
 *Release Date - 1st March, 2019*
