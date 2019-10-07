@@ -298,7 +298,7 @@ function sitemap_generator_settings_page() {
 				<p>
 					<input style="width: 100%;" type="text" name="sitemap-generator-query-params-to-remove" value="<?php echo get_option('sitemap-generator-query-params-to-remove', ''); ?>" />
 				</p>
-				<p>An ampersend (&amp;) separated list of query parameters that are removed from each URL before the URL is processed. This could be useful if you have for example timestamps in your URLs.</p>
+				<p>An ampersand (&amp;) separated list of query parameters that are removed from each URL before the URL is processed. This could be useful if you have for example timestamps in your URLs.</p>
 				<p>If you like to remove the query parameters <em>q</em> and <em>timestamp</em> from all URLs, a valid value would for example be:</p>
 				<pre>q&amp;timestamp</pre>
 
