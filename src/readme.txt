@@ -111,6 +111,23 @@ In the most cases this is due to the fact that you have set a large value for th
 
 == Changelog ==
 
+= 1.7.0 =
+*Release Date - 22st October, 2019*
+
+* Features
+	* Completely rewritten user interface.
+		* Uniform on all platforms (WordPress, online tool, WebsiteTools and Joomla).
+	* Sitemap backup on Sitemap Generator servers (pro only).
+	* Download function to redownload sitemap from last run (pro only).
+	* Stop generation process.
+	* Show more detailed stats after generation has finished.
+* Usability
+	* Autoresume without an extra click when already running.
+	* Load stats of last generation process when Sitemap Generator is opened (pro only).
+	* Added WordFence warning with instructions to solve issues with WordFence.
+* Config
+	* Set default value for `Reference Count Threshold` to 5 for new and old installations.
+
 = 1.6.2 =
 *Release Date - 1st July, 2019*
 

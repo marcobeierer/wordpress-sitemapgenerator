@@ -25,101 +25,72 @@ function register_sitemap_generator_page() {
 function sitemap_generator_page() {
 	include_once('shared_functions.php'); ?>
 
-	<div ng-app="sitemapGeneratorApp" ng-strict-di>
-		<div ng-controller="SitemapController">
-			<div class="wrap">
-				<h2>Sitemap Generator</h2>
+	<div class="wrap">
+		<div class="bootstrap3">
+			<h2>Sitemap Generator</h2>
 
-				<?php
-					cURLCheck();
+			<?php
+				cURLCheck();
+
+				$websiteURL = get_home_url();
+
+				$isdev = isset($_GET['dev']);
+				if ($isdev && $_GET['dev'] == '1') {
+					$websiteURL = 'https://www.marcobeierer.com/';
+				} else {
 					localhostCheck();
-				?>
+				}
 
-				<div class="card" id="sitemap-widget">
-					<h3>Generate a XML sitemap of your site</h3>
-					<div>
-						<form name="sitemapForm">
-							<div class="input-group">
-								<span class="input-group-addon">
-									<i class="glyphicon glyphicon-globe"></i>
-								</span>
-								<span class="input-group-btn">
-									<button type="submit" class="button {{ generateClass }}" ng-click="generate()" ng-disabled="generateDisabled">Generate your sitemap</button>
-									<a class="button {{ downloadClass }}" ng-click="download()" ng-disabled="downloadDisabled" download="sitemap.xml" ng-href="{{ href }}">Show the sitemap</a>
-								</span>
-							</div>
-						</form>
-						<p class="alert well-sm {{ messageClass }}"><span ng-bind-html="message | sanitize"></span> <span ng-if="pageCount > 0 && downloadDisabled">{{ pageCount }} URLs already processed.</span></p>
-					</div>
-				</div>
-				<div class="card" ng-if="stats">
-					<h4>Sitemap Stats</h4>
-					<table>
-						<tr>
-							<td>Sitemap URL count:</td>
-							<td>{{ stats.SitemapURLCount }}</td>
-						</tr>
-						<?php
-							$token = get_option('sitemap-generator-token');
-							if ($token != ''): 
-						?>
-						<tr>
-							<td>Sitemap image count:</td>
-							<td>{{ stats.SitemapImageCount }}</td>
-						</tr>
-						<tr>
-							<td>Sitemap video count:</td>
-							<td>{{ stats.SitemapVideoCount }}</td>
-						</tr>
-						<?php
-							endif; 
-						?>
-					</table>
-					<h4>Crawl Stats</h4>
-					<table>
-						<tr>
-							<td>Crawled URLs count:</td>
-							<td>{{ stats.CrawledResourcesCount }}</td>
-						</tr>
-						<tr>
-							<td>Dead URLs count:</td>
-							<td>{{ stats.DeadResourcesCount }}</td>
-						</tr>
-						<tr>
-							<td>Timed out URLs count:</td>
-							<td>{{ stats.TimedOutResourcesCount }}</td>
-						</tr>
-					</table>
-					<p><i>Want to find out more about the dead and timed out URLs? Have a look at my <a href="https://wordpress.org/plugins/link-checker/">Link Checker</a> for WordPress.</i></p>
-				</div>
-				
-				<?php if (get_option('sitemap-generator-token') == ''): ?>
-				<div class="card">
-					<h4>Sitemap Generator Professional</h4>
-					<p>Your site has <strong>more than 500 URLs</strong> or you like to integrate an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Then have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a>.
-				</div>
-				<?php endif; ?>
+				wordfenceCheck('Sitemap Generator', 'sitemap-generator-settings');
+			?>
 
-				<div class="card">
-					<h4>You like the Sitemap Generator?</h4>
-					<p>I would be happy if you can write a review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>!</p>
-					<?php if (new DateTime() <= new DateTime('2015-08-31')): ?>
-					<p>The <strong>first three reviewers in August 2015 get a token</strong> for the generation of sitemaps (including images and videos) with up to 2500 URLs and a lifetime of one year <strong>for free</strong>! The token is worth 40.- Euro. Just write a review and send me the address of your website by email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> and I will send you the token.</p>
-					<?php endif; ?>
-				</div>
 
-				<?php if (false && get_option('sitemap-generator-token') == ''): ?>
-				<div class="card">
-					<h4>Blogging about WordPress?</h4>
-					<p>I offer a special starter package for you and your audience. Get a free token for the Sitemap Generator Professional for your blog and up to five tokens for a competition, public give-away or something else.</p>
-					<p>Please find the <a href="https://www.marcobeierer.com/wordpress-plugins/blogger-package">details about the package on my website</a> or write me an email to <a href="mailto:email@marcobeierer.com">email@marcobeierer.com</a> if you have any questions.</p>
-				</div>
-				<?php endif; ?>
+			<sitemap-generator
+				proxy-url="admin-ajax.php?action=sitemap_proxy"
+				website-url="<?php echo esc_attr($websiteURL); ?>"
+				sitemap-filename="sitemap.xml"
+				token="<?php echo esc_attr(get_option('sitemap-generator-token', '')); ?>"
+				system-name="WordPress"
+				max-fetchers="<?php echo (int) get_option('sitemap-generator-max-fetchers', 3); ?>"
+				ignore-embedded-content="<?php echo (int) get_option('sitemap-generator-ignore-embedded-content', 0); ?>"
+				reference-count-threshold="<?php echo (int) get_option('sitemap-generator-reference-count-threshold', 5); ?>"
+				query-params-to-remove="<?php echo esc_attr(get_option('sitemap-generator-query-params-to-remove', '')); ?>"
+				disable-cookies="<?php echo (int) get_option('sitemap-generator-disable-cookies', 0); ?>"
+				enable-index-file="0"
+				professional-url="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional"
+				btn-primary-class="btn-primary"
+				btn-default-class="btn-default"
+			>
+			<!-- token needs also to be set in proxy -->
+			</sitemap-generator>
+			
+			<?php if (get_option('sitemap-generator-token') == ''): ?>
+			<div class="card">
+				<h4>Sitemap Generator Professional</h4>
+				<p>Your site has <strong>more than 500 URLs</strong> or you like to integrate an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Then have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a>.
+			</div>
+			<?php endif; ?>
 
-				<div class="card">
-					<h4>Any questions?</h4>
-					<p>Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
-				</div>
+			<div class="card">
+				<h4>Please help me with a Review for the Sitemap Generator in the WordPress Plugin Directory</h4>
+				<p>Do you like the Sitemap Generator for WordPress and like to help out? I would be happy if you could write a short review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>.</p>
+				<p>This would help a lot to make the Sitemap Generator more popular and allows me to invest more time in the improvement of the Sitemap Generator.</p>
+			</div>
+
+			<div class="card">
+				<h4>Sitemap Generator for other Platforms</h4>
+				<p>The Sitemap Generator is also available as:</p>
+				<ul>
+					<li><a target="_blank" href="https://www.marcobeierer.com/tools/sitemap-generator">online tool</a>, </li>
+					<li><a target="_blank" href="https://www.marcobeierer.com/joomla-extensions/sitemap-generator">Joomla extension</a>,</li>
+					<li><a target="_blank" href="https://github.com/marcobeierer/sitemapgenerator-cli">command-line application</a> (direct link to GitHub) and</li>
+					<li>app in the <a target="_blank" href="https://www.marcobeierer.com/tools/website-tools">Website Tools</a>.</li>
+				</ul>
+			</div>
+
+			<div class="card">
+				<h4>Any questions?</h4>
+				<p>Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
 			</div>
 		</div>
 	</div>
@@ -130,38 +101,45 @@ add_action('admin_enqueue_scripts', 'load_sitemap_generator_admin_scripts');
 function load_sitemap_generator_admin_scripts($hook) {
 
 	if ($hook == 'toplevel_page_sitemap-generator') {
+		wp_enqueue_script('jquery');
 
-		$angularURL = plugins_url('js/angular.min.js', __FILE__);
-		$sitemapGeneratorVarsURL = plugins_url('js/sitemap-vars.js?v=1', __FILE__);
-		$sitemapGeneratorURL = plugins_url('js/sitemap.js?v=6', __FILE__);
-
-		wp_enqueue_script('sitemap_generator_angularjs', $angularURL);
-		wp_enqueue_script('sitemap_generator_sitemapgeneratorvarsjs', $sitemapGeneratorVarsURL);
+		$sitemapGeneratorURL = plugins_url('js/sitemap-generator-1.1.1.min.js', __FILE__);
 		wp_enqueue_script('sitemap_generator_sitemapgeneratorjs', $sitemapGeneratorURL);
+		wp_add_inline_script('sitemap_generator_sitemapgeneratorjs', "jQuery(document).ready(function() { riot.mount('*', {}); });");
+
+		$cssURL = plugins_url('css/wrapped.min.css?v=1', __FILE__); // TODO versionize file
+		wp_enqueue_style('sitemap_generator_wrappedcss', $cssURL);
+
+		$customCSSURL = plugins_url('css/custom.css?v=1', __FILE__); // TODO versionize file
+		wp_enqueue_style('sitemap_generator_customcss', $customCSSURL);
 	}
 }
 
 add_action('wp_ajax_sitemap_proxy', 'sitemap_proxy_callback');
 function sitemap_proxy_callback() {
-	$baseurl = get_home_url();
-	$baseurl64 = strtr(base64_encode($baseurl), '+/', '-_');
+	$queryParamsArr = $_GET;
+
+	// unset WordPress vars so that we just have passed sitemap generator params:
+	unset($queryParamsArr['action']);
+
+	$baseURL64 = urldecode($queryParamsArr['baseurl64']);
+	unset($queryParamsArr['baseurl64']);
+
+	// '&' is required because null is handled as empty string, also some systems seem to have an invalid default value (&amp;)
+	// according to comments in docs: https://www.php.net/manual/en/function.http-build-query.php
+	// RFC3986 is the same as urlencode() uses and it required for query_params_to_remove
+	$queryParams = http_build_query($queryParamsArr, null, '&', PHP_QUERY_RFC3986); 
+
+	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?%s', $baseURL64, $queryParams);
 
 	$ch = curl_init();
-
-	$requestURL = sprintf('https://api.marcobeierer.com/sitemap/v2/%s?pdfs=1&origin_system=wordpress&max_fetchers=%d&ignore_embedded_content=%d&reference_count_threshold=%d&query_params_to_remove=%s&disable_cookies=%d', 
-		$baseurl64, get_option('sitemap-generator-max-fetchers', 3), 
-		get_option('sitemap-generator-ignore-embedded-content', 0),
-		get_option('sitemap-generator-reference-count-threshold', -1),
-		urlencode(get_option('sitemap-generator-query-params-to-remove', '')),
-		get_option('sitemap-generator-disable-cookies', 0)
-	);
 
 	curl_setopt($ch, CURLOPT_URL, $requestURL);
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 
-	$token = get_option('sitemap-generator-token');
+	$token = get_option('sitemap-generator-token', '');
 	if ($token != '') {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: BEARER ' . $token));
 	}
@@ -192,13 +170,9 @@ function sitemap_proxy_callback() {
 
 	if ($statusCode == 200 && $contentType == 'application/xml') {
 		$matches = array();
-		preg_match('/\r\nX-Limit-Reached: (.*)\r\n/', $responseHeader, $matches);
-		if (isset($matches[1])) {
-			header("X-Limit-Reached: $matches[1]");
-		}
 
-		$matches = array();
-		preg_match('/\r\nX-Stats: (.*)\r\n/', $responseHeader, $matches);
+		// case insensitive (/i) because WordPress converts header names to lower case
+		preg_match('/\r\nX-Stats: (.*)\r\n/i', $responseHeader, $matches);
 		if (isset($matches[1])) {
 			header("X-Stats: $matches[1]");
 		}
@@ -285,9 +259,9 @@ function sitemap_generator_settings_page() {
 				<h3>Reference Count Threshold</h3>
 				<p>
 					<select name="sitemap-generator-reference-count-threshold" style="width: 100%;">
-					<option <?php if ((int) get_option('sitemap-generator-reference-count-threshold', -1) === -1) { ?>selected<?php } ?> value="-1">No Threshold</option>
+					<option <?php if ((int) get_option('sitemap-generator-reference-count-threshold', 5) === -1) { ?>selected<?php } ?> value="-1">No Threshold</option>
 					<?php for ($i = 0; $i <= 100; $i++) { ?>
-						<option <?php if ((int) get_option('sitemap-generator-reference-count-threshold', -1) === $i) { ?>selected<?php } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<option <?php if ((int) get_option('sitemap-generator-reference-count-threshold', 5) === $i) { ?>selected<?php } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
 					<?php } ?>
 					</select>
 				</p>
@@ -298,7 +272,7 @@ function sitemap_generator_settings_page() {
 
 				<h3>Query Params To Remove</h3>
 				<p>
-					<input style="width: 100%;" type="text" name="sitemap-generator-query-params-to-remove" value="<?php echo get_option('sitemap-generator-query-params-to-remove', ''); ?>" />
+					<input style="width: 100%;" type="text" name="sitemap-generator-query-params-to-remove" value="<?php echo esc_attr(get_option('sitemap-generator-query-params-to-remove', '')); ?>" />
 				</p>
 				<p>An ampersand (&amp;) separated list of query parameters that are removed from each URL before the URL is processed. This could be useful if you have for example timestamps in your URLs.</p>
 				<p>If you like to remove the query parameters <em>q</em> and <em>timestamp</em> from all URLs, a valid value would for example be:</p>
