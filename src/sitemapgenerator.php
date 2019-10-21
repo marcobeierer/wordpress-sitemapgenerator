@@ -269,7 +269,9 @@ function sitemap_generator_settings_page() {
 					<?php } ?>
 					</select>
 				</p>
-				<p>Number of the maximal concurrent connections. The default value is three concurrent connections, but some hosters do not allow three concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with three concurrent connections. With this option you can limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances. You can also increase the number of concurrent connections if your server can handle it.</p>
+				<p>Number of the maximal concurrent connections.</p>
+				<p>The default value is three concurrent connections, but some hosters do not allow three concurrent connections or an installed plugin may use that much resources on each request that the limitations of your hosting is reached with three concurrent connections.</p>
+				<p>With this option you can limit the number of concurrent connections used to access your website and make the Sitemap Generator work under these circumstances. You can also increase the number of concurrent connections if your server can handle it.</p>
 
 				<h3>Ignore Embedded Content</h3>
 				<p>
