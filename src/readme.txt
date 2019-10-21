@@ -3,7 +3,7 @@ Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.2
 Tested up to: 5.2
-Stable tag: 1.6.2
+Stable tag: 1.7.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
