@@ -41,3 +41,4 @@ svn ci -m "published version $1"
 cd ..
 
 # TODO delete removed files in svn/trunk
+# always use `svn rm filename` for that and commit afterwards
