@@ -1,16 +1,16 @@
 <?php
 /*
  * @package    SitemapGenerator
- * @copyright  Copyright (C) 2015 - 2021 Marco Beierer. All rights reserved.
+ * @copyright  Copyright (C) 2015 - 2022 Marco Beierer. All rights reserved.
  * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
 defined('ABSPATH') or die('Restricted access.');
 
 /*
-Plugin Name: Sitemap Generator
+Plugin Name: Sitemap Generator Professional
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.7.2
+Version: 1.7.3
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
@@ -28,6 +28,13 @@ function sitemap_generator_page() {
 	<div class="wrap">
 		<div class="bootstrap3">
 			<h2>Sitemap Generator</h2>
+
+			<?php if (get_option('sitemap-generator-token') == ''): ?>
+			<div class="notice notice-error below-h2">
+				<p>The Sitemap Generator needs a paid token to operate since August 2022. For more information have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">information page</a>.</p>
+				<p>Canceling the free version was sadly necessary because the ratio between free and paying users wasn't healthy for a long time and all income from paying users was used to pay the servers required for the free users. The web version on my <a href="https://www.marcobeierer.com/tools/sitemap-generator">website</a> is still free to use. Thank you for your trust and sorry for the inconvenience caused.</p>
+			</div>
+			<?php endif; ?>
 
 			<?php
 				cURLCheck();
@@ -64,13 +71,6 @@ function sitemap_generator_page() {
 			<!-- token needs also to be set in proxy -->
 			</sitemap-generator>
 			
-			<?php if (get_option('sitemap-generator-token') == ''): ?>
-			<div class="card">
-				<h4>Sitemap Generator Professional</h4>
-				<p>Your site has <strong>more than 500 URLs</strong> or you like to integrate an <strong>image sitemap</strong> or a <strong>video sitemap</strong>? Then have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a>.
-			</div>
-			<?php endif; ?>
-
 			<div class="card">
 				<h4>Please help me with a Review for the Sitemap Generator in the WordPress Plugin Directory</h4>
 				<p>Do you like the Sitemap Generator for WordPress and like to help out? I would be happy if you could write a short review or vote for it in the <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/mb-sitemap-generator">WordPress Plugin Directory</a>.</p>

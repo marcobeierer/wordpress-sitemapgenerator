@@ -2,12 +2,15 @@
 Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.2
-Tested up to: 5.8
-Stable tag: 1.7.2
+Tested up to: 6.0
+Stable tag: 1.7.3
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 An easy to use XML sitemap generator with support for image and video sitemaps for WordPress.
+
+== Paid plugin ==
+Please note that the Sitemap Generator plugin requires a paid token to operate. The free version is no longer offered.
 
 == Description ==
 The [Sitemap Generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages of your site once.
@@ -49,12 +52,9 @@ I have published a detailed document about how the Sitemap Generator aggregates 
 [Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator-data)
 
 = Is the service free of charge? =
-The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image or video sitemap, you could buy the professional version to create a sitemap with up to 50000 URLs at the following website. The wordpress plugin itself is free of charge, but nearly useless without the external service. Please note that also not indexable URLs (for example .zip files) count to the quota.
+The Sitemap Generator Professional is a paid plugin. A free version was offered for many years, but since August 2022 only a paid version is available.
 
 [Sitemap Generator Professional](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional)
-
-= Limitations =
-By default the Sitemap Generator indexes the first 500 URLs of your website. If your website has more URLs, please see the section 'Is the service free of charge?'.
 
 = Warnings =
 If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the Sitemap Generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
@@ -110,6 +110,12 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.7.3 =
+*Release Date - 1st August, 2022*
+
+* Added paid version info.
+* Updated 'Tested up to' information.
 
 = 1.7.2 =
 *Release Date - 2nd August, 2021*
