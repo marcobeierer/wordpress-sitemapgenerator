@@ -10,7 +10,7 @@ defined('ABSPATH') or die('Restricted access.');
 Plugin Name: Sitemap Generator Professional
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.7.4
+Version: 1.7.5
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
@@ -52,6 +52,7 @@ function sitemap_generator_page() {
 			?>
 
 
+			<?php if (get_option('sitemap-generator-token') != ''): ?>
 			<sitemap-generator
 				proxy-url="admin-ajax.php?action=sitemap_proxy"
 				website-url="<?php echo esc_attr($websiteURL); ?>"
@@ -92,6 +93,8 @@ function sitemap_generator_page() {
 				<h4>Any questions?</h4>
 				<p>Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
 			</div>
+
+			<?php endif; ?>
 		</div>
 	</div>
 <?php
