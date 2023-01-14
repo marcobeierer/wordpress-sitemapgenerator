@@ -3,11 +3,16 @@ Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.2
 Tested up to: 6.0
-Stable tag: 1.7.5
+Stable tag: 1.7.6
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 An easy to use XML sitemap generator with support for image and video sitemaps for WordPress.
+
+== Out of service ==
+It's no longer possible to purchase tokens for the Sitemap Generator as of mid-January 2023. 
+
+The service is still available for all users that have already purchased a token and will be shutdown when the last issued token expires mid-January 2024.
 
 == Description ==
 The [Sitemap Generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages of your site once.
@@ -112,6 +117,11 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.7.6 =
+*Release Date - 14th January, 2023*
+
+* Out of service info.
 
 = 1.7.5 =
 *Release Date - 24th October, 2022*

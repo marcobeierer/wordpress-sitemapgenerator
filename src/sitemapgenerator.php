@@ -10,7 +10,7 @@ defined('ABSPATH') or die('Restricted access.');
 Plugin Name: Sitemap Generator Professional
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.7.5
+Version: 1.7.6
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
 License: GPL v3
