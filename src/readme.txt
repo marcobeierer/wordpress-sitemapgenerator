@@ -1,9 +1,9 @@
 === Sitemap Generator Professional ===
 Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
-Requires at least: 4.2
-Tested up to: 6.0
-Stable tag: 1.7.7
+Requires at least: 4.7
+Tested up to: 7.0
+Stable tag: 1.8.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,7 +50,7 @@ Please note that the Sitemap Generator plugin requires a paid token to operate. 
 
 = Technical Requirements =
 * cURL 7.18.1 or higher.
-	* PHP 5.3 should be compiled against a compatible cURL version in the most cases. PHP 5.4 or higher should by default provide a compatible cURL version.
+	* Current PHP versions supported by WordPress should provide a compatible cURL version in most hosting environments.
 * OpenSSL 0.9.8f or higher.
 
 = Data Aggregation and Indexable File Types =
@@ -117,6 +117,13 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.8.0 =
+*Release Date - 26th May, 2026*
+
+* Updated compatibility information for WordPress 7.0.
+* Modernized settings registration for current WordPress versions.
+* Added nonce and capability checks to the admin AJAX proxy.
 
 = 1.7.7 =
 *Release Date - 14th January, 2023*
@@ -357,4 +364,3 @@ In the most cases this is due to the fact that you have set a large value for th
 *Release Date - 9th May, 2015*
 
 * Initial release.
-

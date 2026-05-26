@@ -10,11 +10,13 @@ defined('ABSPATH') or die('Restricted access.');
 Plugin Name: Sitemap Generator Professional
 Plugin URI: https://www.marcobeierer.com/wordpress-plugins/sitemap-generator
 Description: An easy to use XML Sitemap Generator with support for image and video sitemaps for WordPress.
-Version: 1.7.7
+Version: 1.8.0
 Author: Marco Beierer
 Author URI: https://www.marcobeierer.com
+Requires at least: 4.7
+Tested up to: 7.0
 License: GPL v3
-Text Domain: Marco Beierer
+Text Domain: mb-sitemap-generator
 */
 
 add_action('admin_menu', 'register_sitemap_generator_page');
@@ -54,7 +56,7 @@ function sitemap_generator_page() {
 
 			<?php if (get_option('sitemap-generator-token') != ''): ?>
 			<sitemap-generator
-				proxy-url="admin-ajax.php?action=sitemap_proxy"
+				proxy-url="<?php echo esc_url(admin_url('admin-ajax.php?action=sitemap_proxy&_ajax_nonce=' . wp_create_nonce('sitemap_proxy'))); ?>"
 				website-url="<?php echo esc_attr($websiteURL); ?>"
 				sitemap-filename="sitemap.xml"
 				token="<?php echo esc_attr(get_option('sitemap-generator-token', '')); ?>"
@@ -107,23 +109,41 @@ function load_sitemap_generator_admin_scripts($hook) {
 		wp_enqueue_script('jquery');
 
 		$sitemapGeneratorURL = plugins_url('js/sitemap-generator-1.1.1.min.js', __FILE__);
-		wp_enqueue_script('sitemap_generator_sitemapgeneratorjs', $sitemapGeneratorURL);
+		wp_enqueue_script('sitemap_generator_sitemapgeneratorjs', $sitemapGeneratorURL, array('jquery'), '1.1.1');
 		wp_add_inline_script('sitemap_generator_sitemapgeneratorjs', "jQuery(document).ready(function() { riot.mount('*', {}); });");
 
-		$cssURL = plugins_url('css/wrapped.min.css?v=1', __FILE__); // TODO versionize file
-		wp_enqueue_style('sitemap_generator_wrappedcss', $cssURL);
+		$cssURL = plugins_url('css/wrapped.min.css', __FILE__);
+		wp_enqueue_style('sitemap_generator_wrappedcss', $cssURL, array(), '1');
 
-		$customCSSURL = plugins_url('css/custom.css?v=1', __FILE__); // TODO versionize file
-		wp_enqueue_style('sitemap_generator_customcss', $customCSSURL);
+		$customCSSURL = plugins_url('css/custom.css', __FILE__);
+		wp_enqueue_style('sitemap_generator_customcss', $customCSSURL, array(), '1');
 	}
 }
 
 add_action('wp_ajax_sitemap_proxy', 'sitemap_proxy_callback');
 function sitemap_proxy_callback() {
+	if (!current_user_can('manage_options')) {
+		wp_send_json('forbidden', 403);
+	}
+
+	if (!check_ajax_referer('sitemap_proxy', false, false)) {
+		wp_send_json('invalid nonce', 403);
+	}
+
+	if (!function_exists('curl_init')) {
+		wp_send_json('cURL is not available', 500);
+	}
+
 	$queryParamsArr = $_GET;
 
 	// unset WordPress vars so that we just have passed sitemap generator params:
 	unset($queryParamsArr['action']);
+	unset($queryParamsArr['_ajax_nonce']);
+	unset($queryParamsArr['_wpnonce']);
+
+	if (!isset($queryParamsArr['baseurl64'])) {
+		wp_send_json('missing baseurl64', 400);
+	}
 
 	$baseURL64 = urldecode($queryParamsArr['baseurl64']);
 	unset($queryParamsArr['baseurl64']);
@@ -218,12 +238,31 @@ function register_sitemap_generator_settings_page() {
 }
 
 function register_sitemap_generator_settings() {
-	register_setting('sitemap-generator-settings-group', 'sitemap-generator-token');
-	register_setting('sitemap-generator-settings-group', 'sitemap-generator-max-fetchers', 'intval');
-	register_setting('sitemap-generator-settings-group', 'sitemap-generator-ignore-embedded-content', 'intval');
-	register_setting('sitemap-generator-settings-group', 'sitemap-generator-reference-count-threshold', 'intval');
-	register_setting('sitemap-generator-settings-group', 'sitemap-generator-query-params-to-remove'); // string is default
-	register_setting('sitemap-generator-settings-group', 'sitemap-generator-disable-cookies', 'intval');
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-token', array(
+		'sanitize_callback' => 'sanitize_sitemap_generator_token',
+	));
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-max-fetchers', array(
+		'sanitize_callback' => 'intval',
+	));
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-ignore-embedded-content', array(
+		'sanitize_callback' => 'intval',
+	));
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-reference-count-threshold', array(
+		'sanitize_callback' => 'intval',
+	));
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-query-params-to-remove', array(
+		'sanitize_callback' => 'sanitize_text_field',
+	));
+	register_setting('sitemap-generator-settings-group', 'sitemap-generator-disable-cookies', array(
+		'sanitize_callback' => 'intval',
+	));
+}
+
+function sanitize_sitemap_generator_token($token) {
+	$token = sanitize_textarea_field($token);
+
+	// Tokens can be pasted with line breaks; JWT token characters never require whitespace.
+	return preg_replace('/\s+/', '', $token);
 }
 
 function sitemap_generator_settings_page() {
