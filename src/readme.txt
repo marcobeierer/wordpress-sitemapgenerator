@@ -12,15 +12,12 @@ An easy to use XML sitemap generator with support for image and video sitemaps f
 == Description ==
 The [Sitemap Generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator) uses an external service to crawl your website and create a XML sitemap of your website. The generator works thus for every plugin out of the box. The computation costs for your website is also very low because the crawler acts like a normal visitor, who visits all pages of your site once.
 
-If you host your website on a dedicated server, you may not need this plugin, because you should have enough resources to generate your sitemap on your server. But if you host your website in a shared environment (as the most WordPress users do), it would be wise to outsource the generation of your sitemap to an external service like this plugin uses to generate the sitemap. This way it is guaranteed that the speed of your website is not affected for your visitors during the generation of the sitemap.
+If you host your website on a dedicated server, you may not need this plugin, because you should have enough resources to generate your sitemap on your server. But if you host your website in a shared environment (as the most WordPress users do), it could be a good idea to outsource the generation of your sitemap to an external service like this plugin uses to generate the sitemap. This way it is guaranteed that the speed of your website is not affected for your visitors during the generation of the sitemap.
 
-= Out of service =
-It's no longer possible to purchase tokens for the Sitemap Generator as of mid-January 2023. 
+= Limitations of the free version =
+The base version of the Sitemap Generator is free but limited. You can create sitemaps for websites with up to 500 URLs. Advanced features like image or video support aren't available in the free version.
 
-The service is still available for all users that have already purchased a token and will be shutdown when the last issued token expires mid-January 2024.
-
-= Paid plugin =
-Please note that the Sitemap Generator plugin requires a paid token to operate. The free version is no longer offered.
+The service cannot be offered free of charge for larger websites because the crawling is done by servers operated by the plugin developer and renting and maintaining these servers isn't cheap.
 
 = Video =
 
@@ -36,7 +33,7 @@ Please note that the Sitemap Generator plugin requires a paid token to operate. 
 	* You could use the user-agent MB-SiteCrawler to control the crawler.
 * Support for robots (noindex) meta elements.
 * Adds nearly all indexable filetypes (for example .pdf, .xls, .doc) to the sitemap.
-	* See the document [Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator-data) on my website for more information.
+	* See the document [Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator/data) on my website for more information.
 
 = Additional Technical Features of the Professional Version =
 * Generation of image sitemaps.
@@ -44,7 +41,6 @@ Please note that the Sitemap Generator plugin requires a paid token to operate. 
 	* Currently HTML5 video elements and embedded YouTube videos are supported.
 
 = Upcoming Technical Features =
-* Support for Vimeo videos in video sitemaps.
 * Support for HTML5 picture elements in image sitemaps.
 * Automatic daily creation of sitemaps.
 
@@ -56,18 +52,13 @@ Please note that the Sitemap Generator plugin requires a paid token to operate. 
 = Data Aggregation and Indexable File Types =
 I have published a detailed document about how the Sitemap Generator aggregates the data for the generation of sitemaps and which file types are getting indexed on my website.
 
-[Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator-data)
-
-= Is the service free of charge? =
-The Sitemap Generator Professional is a paid plugin. A free version was offered for many years, but since August 2022 only a paid version is available.
-
-[Sitemap Generator Professional](https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional)
+[Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator/data)
 
 = Warnings =
 If you already have an existing sitemap.xml in your WordPress root directory, this file would be overwritten. It is thus recommended to backup your existing sitemap.xml file before using the Sitemap Generator. I also have not tested the generator on Windows webspace. You should also access the sitemap.xml after the generation finished and check if everything is fine.
 
 = Pre-Installation Verification Test =
-If you like to test if the Sitemap Generator works fine with your website before you will install the plugin, you could use the [Online Sitemap Generator](https://www.marcobeierer.com/tools/sitemap-generator#generator) on my website, which uses to same technology as the plugin to generate the sitemaps.  
+If you like to test if the Sitemap Generator works fine with your website before you will install the plugin, you could use the [Online Sitemap Generator](https://www.marcobeierer.com/tools/sitemap-generator#generator) on my website, which uses to same technology as the plugin to generate the sitemaps.
 
 = Use of an External Server =
 The Sitemap Generator uses an external server, operated by the developer of the plugin, to crawl your website and detect broken links. This means, that there is some communication between your website and the server. The only data that is communicated to the external server by your website is the URL of your website and the fact that you are using WordPress. The server than crawlers your website (as a normal visitor does) and answers with the generated sitemap.
@@ -119,8 +110,9 @@ In the most cases this is due to the fact that you have set a large value for th
 == Changelog ==
 
 = 1.8.0 =
-*Release Date - 26th May, 2026*
+*Release Date - 28th May, 2026*
 
+* Made the Sitemap Generator available again including the free version.
 * Updated compatibility information for WordPress 7.0.
 * Modernized settings registration for current WordPress versions.
 * Added nonce and capability checks to the admin AJAX proxy.

@@ -32,9 +32,8 @@ function sitemap_generator_page() {
 			<h2>Sitemap Generator</h2>
 
 			<?php if (get_option('sitemap-generator-token') == ''): ?>
-			<div class="notice notice-error below-h2">
-				<p>The Sitemap Generator needs a paid token to operate since August 2022. For more information have a look at the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">information page</a>.</p>
-				<p>Canceling the free version was sadly necessary because the ratio between free and paying users wasn't healthy for a long time and all income from paying users was used to pay the servers required for the free users. The web version on my <a href="https://www.marcobeierer.com/tools/sitemap-generator">website</a> is still free to use. Thank you for your trust and sorry for the inconvenience caused.</p>
+			<div class="notice notice-info below-h2">
+				<p>You are using the free version of the Sitemap Generator. It works for websites with up to 500 URLs and doesn't include advanced features such as image and video support. Learn more about <a href="https://www.marcobeierer.com/tools/sitemap-generator/professional">Sitemap Generator Professional</a>.</p>
 			</div>
 			<?php endif; ?>
 
@@ -54,7 +53,6 @@ function sitemap_generator_page() {
 			?>
 
 
-			<?php if (get_option('sitemap-generator-token') != ''): ?>
 			<sitemap-generator
 				proxy-url="<?php echo esc_url(admin_url('admin-ajax.php?action=sitemap_proxy&_ajax_nonce=' . wp_create_nonce('sitemap_proxy'))); ?>"
 				website-url="<?php echo esc_attr($websiteURL); ?>"
@@ -67,7 +65,7 @@ function sitemap_generator_page() {
 				query-params-to-remove="<?php echo esc_attr(get_option('sitemap-generator-query-params-to-remove', '')); ?>"
 				disable-cookies="<?php echo (int) get_option('sitemap-generator-disable-cookies', 0); ?>"
 				enable-index-file="0"
-				professional-url="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional"
+				professional-url="https://www.marcobeierer.com/tools/sitemap-generator/professional"
 				btn-primary-class="btn-primary"
 				btn-default-class="btn-default"
 			>
@@ -85,9 +83,8 @@ function sitemap_generator_page() {
 				<p>The Sitemap Generator is also available as:</p>
 				<ul>
 					<li><a target="_blank" href="https://www.marcobeierer.com/tools/sitemap-generator">online tool</a>, </li>
-					<li><a target="_blank" href="https://www.marcobeierer.com/joomla-extensions/sitemap-generator">Joomla extension</a>,</li>
-					<li><a target="_blank" href="https://github.com/marcobeierer/sitemapgenerator-cli">command-line application</a> (direct link to GitHub) and</li>
-					<li>app in the <a target="_blank" href="https://www.marcobeierer.com/tools/website-tools">Website Tools</a>.</li>
+					<li>Joomla extension,</li>
+					<li><a target="_blank" href="https://github.com/marcobeierer/sitemapgenerator-cli">command-line application</a> (direct link to GitHub).</li>
 				</ul>
 			</div>
 
@@ -95,8 +92,6 @@ function sitemap_generator_page() {
 				<h4>Any questions?</h4>
 				<p>Please have a look at the <a target="_blank" href="https://wordpress.org/plugins/mb-sitemap-generator/faq/">FAQ section</a> or ask your question in the <a target="_blank" href="https://wordpress.org/support/plugin/mb-sitemap-generator">support area</a>. I would be pleased to help you out!</p>
 			</div>
-
-			<?php endif; ?>
 		</div>
 	</div>
 <?php
@@ -275,7 +270,7 @@ function sitemap_generator_settings_page() {
 				<?php do_settings_sections('sitemap-generator-settings-group'); ?>
 				<h3>Your Token</h3>
 				<p><textarea name="sitemap-generator-token" style="width: 100%; min-height: 350px;"><?php echo esc_attr(get_option('sitemap-generator-token')); ?></textarea></p>
-				<p>The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token for the <a href="https://www.marcobeierer.com/wordpress-plugins/sitemap-generator-professional">Sitemap Generator Professional</a> to create a sitemap with up to 50000 URLs.</p>
+				<p>The Sitemap Generator service allows you to create a sitemap with up to 500 URLs for free. If your website has more URLs or you like to integrate an image and video sitemap, you can buy a token for the <a href="https://www.marcobeierer.com/tools/sitemap-generator/professional">Sitemap Generator Professional</a> to create a sitemap with up to 50000 URLs.</p>
 
 				<h3>Concurrent Connections</h3>
 				<p>
