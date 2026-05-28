@@ -1,6 +1,6 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
+Tags: sitemap, seo, image sitemap, video sitemap, youtube
 Requires at least: 4.7
 Tested up to: 7.0
 Stable tag: 1.8.0
@@ -15,7 +15,7 @@ The [Sitemap Generator](https://www.marcobeierer.com/wordpress-plugins/sitemap-g
 If you host your website on a dedicated server, you may not need this plugin, because you should have enough resources to generate your sitemap on your server. But if you host your website in a shared environment (as the most WordPress users do), it could be a good idea to outsource the generation of your sitemap to an external service like this plugin uses to generate the sitemap. This way it is guaranteed that the speed of your website is not affected for your visitors during the generation of the sitemap.
 
 = Limitations of the free version =
-The base version of the Sitemap Generator is free but limited. You can create sitemaps for websites with up to 500 URLs. Advanced features like image or video support aren't available in the free version.
+The Sitemap Generator can be used for free, but the free version is limited. You can create sitemaps for websites with up to 500 URLs. Advanced features like image or video support aren't available in the free version.
 
 The service cannot be offered free of charge for larger websites because the crawling is done by servers operated by the plugin developer and renting and maintaining these servers isn't cheap.
 
