@@ -1,4 +1,4 @@
-=== Sitemap Generator Professional ===
+=== Sitemap Generator ===
 Contributors: mbsec
 Tags: sitemap, seo, xml sitemap, image sitemap, video sitemap, image seo, video seo, xml image sitemap, site map, xml video sitemap, google, youtube, yahoo, bing, baidu, yandex, sitemap.xml
 Requires at least: 4.7
@@ -35,7 +35,7 @@ The service cannot be offered free of charge for larger websites because the cra
 * Adds nearly all indexable filetypes (for example .pdf, .xls, .doc) to the sitemap.
 	* See the document [Sitemap Generator Data](https://www.marcobeierer.com/tools/sitemap-generator/data) on my website for more information.
 
-= Additional Technical Features of the Professional Version =
+= Additional Technical Features of the Pro Version =
 * Generation of image sitemaps.
 * Generation of video sitemaps.
 	* Currently HTML5 video elements and embedded YouTube videos are supported.

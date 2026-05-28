@@ -3328,7 +3328,7 @@ riot.tag2('sitemap-generator', '<div> <form name="sitemapForm"> <div class="btn-
 						}
 
 						if (self.stats && self.stats.URLLimitReached) {
-							self.setMessage('The Sitemap Generator reached the URL limit and the generated sitemap probably isn\'t complete. You may buy a token for the <a href="' + opts.professionalUrl + '">Sitemap Generator Professional</a> to crawl up to 50\'000 URLs and create a complete sitemap. Additionally to a higher URL limit, the professional version also adds images and videos to your sitemap.', 'danger');
+							self.setMessage('The Sitemap Generator reached the URL limit and the generated sitemap probably isn\'t complete. You may buy a token for the <a href="' + opts.professionalUrl + '">Sitemap Generator Pro</a> to crawl up to 50\'000 URLs and create a complete sitemap. Additionally to a higher URL limit, the Pro version also adds images and videos to your sitemap.', 'danger');
 						}
 						else {
 							var message = 'Your sitemap was generated successfully. You can download the sitemap now.';
