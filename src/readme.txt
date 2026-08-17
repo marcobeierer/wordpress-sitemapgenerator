@@ -1,6 +1,6 @@
 === Sitemap Generator ===
 Contributors: mbsec
-Tags: sitemap, seo, image sitemap, video sitemap, youtube
+Tags: sitemap, seo, image sitemap, video sitemap, xml sitemap
 Requires at least: 4.7
 Tested up to: 7.0
 Stable tag: 1.8.0
@@ -108,6 +108,11 @@ In the most cases this is due to the fact that you have set a large value for th
 1. The user interface of the Sitemap Generator.
 
 == Changelog ==
+
+= 1.8.1 =
+*Release Date - 17th August, 2026*
+
+* Updated 'Tested up to' information.
 
 = 1.8.0 =
 *Release Date - 28th May, 2026*
