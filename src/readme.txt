@@ -2,8 +2,8 @@
 Contributors: mbsec
 Tags: sitemap, seo, image sitemap, video sitemap, xml sitemap
 Requires at least: 4.7
-Tested up to: 7.0
-Stable tag: 1.8.0
+Tested up to: 7.1
+Stable tag: 1.8.1
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
